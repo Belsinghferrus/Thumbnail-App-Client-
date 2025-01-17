@@ -42,6 +42,13 @@
 
 }
 
+.thumbnail-main-info{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+}
+
 .thumbnail-profile-pic{
     width: 50px;
     height: 50px;
@@ -65,15 +72,27 @@
     background-color: #333;
     color: white;
     border: none;
-    padding: 10px 10px;
+    padding: 5px 5px;
     cursor: pointer;
-    border-radius: 25px;
+    border-radius: 30px;
+    gap: 10px;
+    align-items: center;
+}
+
+.view-channel{
+    background-color:#333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 20px;
     gap: 10px;
     align-items: center;
 }
 
 .thumbnail-metric img {
-    color: inherit;
+    size:16px;
+    filter: invert(100%);
 }
 .thumbnail-info button:hover {
     background-color: #555;
@@ -85,3 +104,52 @@
     gap:10px;
 }
 
+.decription-container{
+    margin-top:10px;
+    background-color: #333;
+    border-radius: 8px;
+}
+
+.suggestion-display{
+    margin-top:30px;
+    display: flex;
+    flex-direction: row;
+    align-item: center;
+    gap: 10px;
+}
+.suggestion-container{
+   display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: space-between;
+    gap: 10px;
+    margin-top: 30px;
+}
+.suggestion-container input{
+    width: 90%;
+    padding: 10px 12px;
+    font-size: 16px;
+    border: none;
+    background-color: #333;
+    border-radius: 9999px; /* Creates a very rounded corner */
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+    
+}
+
+.suggestion-container button{
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.comments{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    gap:5px;
+}
