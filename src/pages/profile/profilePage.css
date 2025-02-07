@@ -1,0 +1,165 @@
+/* General Styles */
+.profile-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Profile Picture */
+.profile-pic-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-picture{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ccc;
+}
+
+/* Username */
+.username {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+/* Bio Section */
+.bio-section {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #555;
+}
+
+/* Thumbnails Section */
+.thumbnails-section {
+  margin-bottom: 40px;
+}
+
+.thumbnails-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.thumbnails-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.thumbnail-card {
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s;
+  position: relative;
+  display: inline-block;
+  margin: 8px;
+}
+
+.thumbnail-card:hover {
+  transform: scale(1.05);
+}
+
+.thumbnail-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.thumbnail-card p {
+  margin: 10px 0;
+  font-size: 1rem;
+  color: #999;
+}
+
+/* Upload Icon */
+.upload-icon {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+}
+
+.upload-icon:hover {
+  background-color: #999;
+}
+
+.menu-container {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.menu-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: white;
+  padding: 4px;
+}
+
+.menu-button:hover {
+  background: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
+  border-radius: 50%;
+}
+
+.menu {
+  position: absolute;
+  left: 0;
+  bottom: -30px;
+  background: black;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  display: none;
+  z-index: 11;
+  white-space: nowrap;
+}
+
+.menu-button.active + .menu {
+  display: block;
+}
+
+.menu button {
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  width: 100%;
+  text-align: left;
+}
+
+.menu-options button:hover {
+  background: grey;
+  border-radius: 4px;
+}
+
+.menu-options button{
+  background-color: #333;
+  position: absolute;
+  left: -60px; 
+  top: 25px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  animation: fadeIn 0.3s ease forwards;
+}
+  
+ 

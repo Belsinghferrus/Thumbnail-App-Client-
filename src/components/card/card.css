@@ -34,8 +34,9 @@
 
 .card-thumbnail-info{
     display: flex;
-    gap: 10px; /* Space between profile picture and text */
+    gap: 10px; 
     margin-top: 10px;
+    
 }
 
 /* .card-thumbnail-info h2 {
@@ -46,7 +47,7 @@
 
 .card-thumbnail-info p{
     
-   
+   width: 200px;
     margin-bottom: 5px;
 }
 .profile-pic{
@@ -63,7 +64,6 @@
 }
 .title{
     font-size: 14px;
-    /* font-weight: bold; */
     color: #fff;
 }
 .card-thumbnail-details{

@@ -1,4 +1,3 @@
-import React from "react";
 import "./homePage.css";
 import TopBar from "../../components/topBar/TopBar";
 import Card from "../../components/card/Card";

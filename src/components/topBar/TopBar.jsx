@@ -1,15 +1,14 @@
-import React from "react";
 import "./topbar.css";
-import search from '../../assets/search.png'
 import Search from "./component/Search";
 import Profile from "./component/Profile";
+import Logo from "./component/Logo";
 const TopBar = () => {
 
 
   return (
     <div className="topbar">
-      <div className="logo">Logo</div>
-
+     
+      <Logo />
       <Search />
       <Profile />
       

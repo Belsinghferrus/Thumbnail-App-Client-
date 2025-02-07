@@ -1,4 +1,3 @@
-import React from "react";
 import "./thumbnail.css";
 import ThumbnailImage from "./components/ThumbnailImage";
 import ThumbnailTitle from "./components/ThumbnailTitle";

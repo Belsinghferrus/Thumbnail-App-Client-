@@ -1,10 +1,26 @@
-import React from 'react'
+import  { useEffect } from 'react'
+import useThumbnailStore from './../../../context/useThumbnailStore';
+import { useParams } from 'react-router-dom';
 
 const ThumbnailTitle = () => {
+
+  const {thumbnailDetail, getThumbnailDetails} = useThumbnailStore();
+  const {id} = useParams()
+
+  useEffect(() => {
+    if(id){
+      getThumbnailDetails(id)
+    }
+  }, [id]);
+
+
   return (
     <div>
-       <h3 className="thumbnail-title">I am iman Gadzhi</h3>
-
+      {thumbnailDetail ? (
+        <h3 className='thumbnail-title'>{thumbnailDetail.title}</h3>
+      ) : (
+        <p>Loading</p>
+      )}
     </div>
   )
 }

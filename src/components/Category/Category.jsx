@@ -1,11 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import  {  useRef, useState } from "react";
 import "./category.css";
+import useThumbnailStore from './../../context/useThumbnailStore';
+
 
 const tags = [
-  "All",
   "Comedy",
   "Education",
   "Entertainment",
+  "Science & Tech",
   "Film & Animation",
   "Gaming",
   "Howto & Style",
@@ -14,7 +16,6 @@ const tags = [
   "Nonprofits",
   "People & Blogs",
   "Pets & Animals",
-  "Science & Tech",
   "Sports",
   "Travel & Events",
 ];
@@ -25,6 +26,7 @@ const Category = () => {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
+  const {filterThumbnail, getThumbnails } = useThumbnailStore()
 
 
 
@@ -33,10 +35,6 @@ const Category = () => {
     setStartX(e.pageX - containerRef.current.offsetLeft);
     setScrollLeft(containerRef.current.scrollLeft);
   };
-
-
-  
-
   const handleMouseMove = (e) => {
     if (!isDragging) return;
     e.preventDefault();
@@ -44,20 +42,20 @@ const Category = () => {
     const walk = (x - startX) * 1;
     containerRef.current.scrollLeft = scrollLeft - walk;
   };
-
-
   const handleMouseUp = () => {
     setIsDragging(false);
   };
-
   const handleMouseLeave = () => {
     setIsDragging(false);
   };
-
-
-
-  const handleClick = (index) => {
-    setActiveIndex(index);
+  const handleClick = (tag) => {
+    setActiveIndex(tags.indexOf(tag));
+    if(tag === tags[0]){
+      getThumbnails()
+    } else {
+      filterThumbnail(tag)
+    }
+    
   };
 
   
@@ -75,7 +73,7 @@ const Category = () => {
         <button
           key={index}
           className={`tag ${index === activeIndex ? "active" : ""}`}
-          onClick={() => handleClick(index)}
+          onClick={() => handleClick(tag)}
         >
           {tag}
         </button>

@@ -1,14 +1,26 @@
-import React from 'react'
+import {useEffect} from 'react'
+import useThumbnailStore from '../../../context/useThumbnailStore';
+import {useParams} from 'react-router-dom'
 
 const ThumbnailImage = () => {
+
+  const {thumbnailDetail, getThumbnailDetails} = useThumbnailStore();
+  const {id} = useParams()
+
+  useEffect(() => {
+    if(id){
+      getThumbnailDetails(id)
+    }
+  }, [id]);
+  
   return (
     
       <div className="thumbnail-container">
-        <img
-          className="thumbnail-image"
-          src="https://i.ytimg.com/vi/1Pb6fHR-YWE/maxresdefault.jpg"
-          alt=""
-        />
+         {thumbnailDetail ? (
+        <img className="thumbnail-image" src={thumbnailDetail.imageUrl} alt={thumbnailDetail.title} />
+      ) : (
+        <p>Loading thumbnail...</p>
+      )}
       </div>
 
   )

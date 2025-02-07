@@ -1,13 +1,40 @@
-import React from "react";
-
+import  {useState} from "react";
+import { useNavigate } from "react-router-dom";
+import useAuth from "../../../context/useAuthStore";
 const Profile = () => {
+  const [isOpen, setIsOpen] = useState(false);
+const {authUser, logout} = useAuth()
+  const navigate = useNavigate();
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+
+  const handleLogout = async() => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error("Logout failed", error);
+    }
+  }
   return (
-    <div >
-      <img
-        className="main-profile-pic"
-        src="https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/e76d4296-43f3-493b-9d50-f8e5c142d06c/2117667014/boys-profile-picture-screenshot.png"
-        alt=""
-      />
+    <div  className="profile-dropdown">
+      <button onClick={toggleDropdown} className="profile-image">
+        <img
+          className="main-profile-pic"
+          src={authUser.profilePicture}
+          alt=""
+        />
+      </button>
+      {isOpen && (
+        <ul className="dropdown-menu">
+          <li onClick={() => navigate("/profile")}>Profile</li>
+          <li onClick={() => navigate("/edit")}>Edit</li>
+          <li onClick={() => navigate("/security")}>Security</li>
+          <li onClick={handleLogout}>Logout</li>
+        </ul>
+      )}
     </div>
   );
 };

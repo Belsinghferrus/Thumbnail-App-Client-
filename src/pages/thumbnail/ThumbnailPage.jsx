@@ -1,12 +1,11 @@
-import React from 'react'
 import './thumbnail.css'
-import TopBar from './../../components/topBar/TopBar';
 import Thumbnail from './../../components/Thumbnail/Thumbnail';
+import Topbar_Profile from '../../components/topBar/Topbar_Profile';
 
 const ThumbnailPage = () => {
   return (
     <div className='thumbnail-page'>
-      <TopBar />
+      <Topbar_Profile />
       <br/>
       <Thumbnail />
     </div>
