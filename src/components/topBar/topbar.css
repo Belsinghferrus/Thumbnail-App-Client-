@@ -2,11 +2,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 10px;
-  margin-bottom: 10px; 
-  padding: 10px 10px
+  margin: 20px 30px 0px 30px;
+  padding: 10px 10px;
 }
-.main-profile-pic{
+.main-profile-pic {
   width: 40px;
   height: 40px;
   background-color: white;
@@ -19,7 +18,6 @@
   width: 400px;
   max-width: 100%;
 }
-
 
 .search-input {
   color: #fff;
@@ -58,11 +56,11 @@
   }
 }
 
-
 /* ---------------PROFILE--------------- */
 
 .profile-dropdown {
   position: relative;
+  
 }
 
 .profile-image {
@@ -82,25 +80,72 @@
 }
 
 .dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 40px;
-  right: -10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
   background-color: #333;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  z-index: 1;
+  border-radius: 8px;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 1000;
+  width: 170px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown-menu li {
-  padding: 10px 15px;
-  list-style-type: none;
+  padding: 12px 16px;
   cursor: pointer;
+  color: #fff;
+  text-align: left;
+  transition: background-color 0.2s ease;
 }
 
 .dropdown-menu li:hover {
-  background-color: #555;
+  background-color: #666;
+
 }
 
-.profile-dropdown:hover .dropdown-menu {
-  display: block;
+.dropdown-menu div {
+  padding: 12px 16px;
+  color: #007bff;
+  text-align: left;
+}
+
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.logo img{
+  height: 50px;
+  width: 200px;
+}
+.menu-navigate-login {
+  cursor: "pointer";
+  width: "100px";
+  height: "40px";
+}
+.menu-profile-image {
+  display: flex;
+  height: 100%;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+}
+.menu-profile-image img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+}
+
+.menu-profile-image p{
+  color: white
+}
+
+.menu-list img{
+  filter: invert();
+  margin-right: 10px;
 }

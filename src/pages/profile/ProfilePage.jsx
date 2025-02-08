@@ -5,6 +5,8 @@ import useAuth from "../../context/useAuthStore";
 import useThumbnailStore from "../../context/useThumbnailStore";
 import Topbar_Profile from "../../components/topBar/Topbar_Profile";
 import { MoreVertical } from "lucide-react";
+import  ReactLinkify  from 'react-linkify';
+import profile from '../../assets/profile.jpg'
 
 const ProfilePage = () => {
   const { authUser } = useAuth();
@@ -38,7 +40,7 @@ const ProfilePage = () => {
       {/* Profile Picture */}
       <div className="profile-pic-container">
         <img
-          src={authUser.profilePicture || ""}
+          src={ authUser?.profilePicture || profile}
           alt="Profile"
           className="profile-picture"
         />
@@ -49,9 +51,11 @@ const ProfilePage = () => {
 
       {/* Bio Section */}
       <div className="bio-section">
+        <ReactLinkify>
         <p>
          {authUser.bio}
         </p>
+        </ReactLinkify>
       </div>
 
       {/* Uploaded Thumbnails Section */}

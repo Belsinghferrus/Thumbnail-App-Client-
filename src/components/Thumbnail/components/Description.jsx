@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import useThumbnailStore from '../../../context/useThumbnailStore';
 import { useParams } from 'react-router-dom';
+import ReactLinkify from 'react-linkify';
 
 const Description = () => {
 
@@ -9,11 +10,17 @@ const Description = () => {
   const {id} = useParams()
   const [hasImpressionUpdated, setHasImpressionUpdated] = useState(false);
 
-  // useEffect(() => {
-  //   if(id){
-  //     getThumbnailDetails(id)
-  //   }
-  // }, [id]);
+  const linkDecorator = (decoratedHref, decoratedText, key) => (
+    <a
+      href={decoratedHref}
+      key={key}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ color: "#007bff", textDecoration: "underline" }} // Custom styles
+    >
+      {decoratedText}
+    </a>
+  );
 
   useEffect(() => {
     if (id && !hasImpressionUpdated) {
@@ -26,8 +33,11 @@ const Description = () => {
 
   return (
     <div className="decription-container">
-          <p>{thumbnailDetail?.impressions || 0} views</p>
-          <p className="description"> <br></br> {thumbnailDetail?.description || "No description available"}</p>
+          <h4>{thumbnailDetail?.impressions || 0} views</h4>
+          <p className="description"> <br></br> 
+          <ReactLinkify componentDecorator={linkDecorator}>
+            {thumbnailDetail?.description || "No description available"}
+            </ReactLinkify> </p>
         </div>
   )
 }

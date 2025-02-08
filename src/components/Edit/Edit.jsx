@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./Edit.css";
 import useAuth from "./../../context/useAuthStore";
+import { useNavigate } from "react-router-dom";
+import profile from '../../assets/profile.jpg'
 
 const Edit = () => {
   const { authUser, updateProfile, isProfileUpdating } = useAuth();
@@ -12,7 +14,7 @@ const Edit = () => {
   );
 
   const userId = authUser._id;
-
+  const navigate = useNavigate()
   const handleNameChange = (e) => setName(e.target.value);
   const handleBioChange = (e) => setBio(e.target.value);
 
@@ -37,7 +39,9 @@ const Edit = () => {
       formData.append("profilePicture", profileImage);
     }
     updateProfile(userId, formData);
+    navigate('/profile')
   };
+
 
   return (
     <div className="edit-profile">
@@ -46,7 +50,7 @@ const Edit = () => {
         <div className="profile-pic-edit">
           <div className="profile-picture-container">
             <img
-              src={previewImage}
+              src={previewImage || profile}
               alt="Profile Preview"
               className="profile-preview"
             />

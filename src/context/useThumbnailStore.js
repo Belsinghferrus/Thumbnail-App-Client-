@@ -9,10 +9,12 @@ const useThumbnailStore = create((set) => ({
   myThumbnail: null,
   isUploading: false,
   savedThumbnails: null,
+  savedImage: false,
+  isLoading: false,
 
-  // setThumbnail: (thumbnail) => {
-  //   set({ thumbnail });
-  // },
+  setThumbnail: (thumbnail) => {
+    set({ thumbnail });
+  },
 
   getThumbnail: async (query = "") => {
     set({ isGettingThumbnail: true });
@@ -50,11 +52,14 @@ const useThumbnailStore = create((set) => ({
   },
 
   getThumbnailDetails: async (id) => {
+    set({ isLoading: true });
     try {
       const response = await axiosInstance.get(`thumbnails/${id}`);
       set({ thumbnailDetail: response.data });
     } catch (error) {
       console.log("Error in getting thumbnail details", error);
+    } finally {
+      set({ isLoading: false });
     }
   },
 
@@ -80,6 +85,8 @@ const useThumbnailStore = create((set) => ({
           saves: state.thumbnailDetail.saves + 1,
         },
       }));
+      set({ savedImage: true });
+
       toast.success("thumbnail saved successful");
     } catch (error) {
       console.error("Error saving thumbnail in thumbnailstore:", error);
@@ -166,7 +173,8 @@ const useThumbnailStore = create((set) => ({
   filterThumbnail: async (category) => {
     set({ isGettingThumbnail: true });
     try {
-      const response = await axiosInstance.get(`/thumbnails/filter/${category}`
+      const response = await axiosInstance.get(
+        `/thumbnails/filter/${category}`
       );
       set({ thumbnail: response.data.thumbnails });
     } catch (error) {

@@ -1,0 +1,39 @@
+.profile-page{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.thumbnails-grids {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+.thumbnail-card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+
+}
+.thumbnail-card-img:hover {
+    transform: scale(1.05);
+  }
+.thumbnail-card-img {
+
+}
+
+.thumbnail-card {
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s;
+    position: relative;
+    display: inline-block;
+    margin: 8px;
+  }

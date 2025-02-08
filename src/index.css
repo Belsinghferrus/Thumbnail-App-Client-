@@ -12,7 +12,7 @@
 body{
   min-width: 100vh;
   min-height: 100vh;
-  background-color: #282828;
+  background-color: #111;
   color: white
 }
 
@@ -22,7 +22,7 @@ a{
 }
 
 .app{
-  width: 80%;
+  width: 100%;
   margin: auto;
 }
 

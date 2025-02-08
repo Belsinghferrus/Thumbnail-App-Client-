@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import useThumbnailStore from "../../../context/useThumbnailStore";
 
 const Search = () => {
@@ -24,7 +24,9 @@ const Search = () => {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    if (searchQuery.trim() === "") return;
+    if (searchQuery.trim() === "") {
+      getThumbnail()
+    };
     setSearchParams({ query: searchQuery });
     getThumbnail(searchQuery);
   };

@@ -1,9 +1,9 @@
-import  {  useRef, useState } from "react";
+import { useRef, useState } from "react";
 import "./category.css";
-import useThumbnailStore from './../../context/useThumbnailStore';
-
+import useThumbnailStore from "./../../context/useThumbnailStore";
 
 const tags = [
+  "All",
   "Comedy",
   "Education",
   "Entertainment",
@@ -26,9 +26,7 @@ const Category = () => {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
-  const {filterThumbnail, getThumbnails } = useThumbnailStore()
-
-
+  const { filterThumbnail, getThumbnail } = useThumbnailStore();
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
@@ -50,15 +48,12 @@ const Category = () => {
   };
   const handleClick = (tag) => {
     setActiveIndex(tags.indexOf(tag));
-    if(tag === tags[0]){
-      getThumbnails()
+    if (tag === "All") {
+      getThumbnail();
     } else {
-      filterThumbnail(tag)
+      filterThumbnail(tag);
     }
-    
   };
-
-  
 
   return (
     <div
