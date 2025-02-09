@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../../context/useAuthStore";
+import useAuth from "../../../Store/useAuthStore";
 import profile from "../../../assets/profile.jpg";
 import user from '../../../assets/user.png'
 import edit from '../../../assets/edit.png'

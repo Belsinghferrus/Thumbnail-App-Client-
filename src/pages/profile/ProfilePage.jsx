@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import "./profilePage.css";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../context/useAuthStore";
-import useThumbnailStore from "../../context/useThumbnailStore";
+import useAuth from "../../Store/useAuthStore";
+import useThumbnailStore from "../../Store/useThumbnailStore";
 import Topbar_Profile from "../../components/topBar/Topbar_Profile";
 import { MoreVertical } from "lucide-react";
 import  ReactLinkify  from 'react-linkify';

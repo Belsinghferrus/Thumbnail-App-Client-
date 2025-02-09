@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./loginPage.css";
-import useAuth from "../../context/useAuthStore";
+import useAuth from "../../Store/useAuthStore";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../components/topBar/component/Logo";

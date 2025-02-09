@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./upload.css";
-import useThumbnailStore from "../../context/useThumbnailStore";
+import useThumbnailStore from "../../Store/useThumbnailStore";
 import toast from "react-hot-toast";
 import ClipLoader from "react-spinners/ClipLoader";
 import {  useNavigate } from "react-router-dom";

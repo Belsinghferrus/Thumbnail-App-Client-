@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import useThumbnailStore from "../../../context/useThumbnailStore";
+import useThumbnailStore from "../../../Store/useThumbnailStore";
 
 const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams();

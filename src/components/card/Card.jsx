@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./card.css";
-import useThumbnailStore from "../../context/useThumbnailStore";
-import useAuth from "../../context/useAuthStore";
+import useThumbnailStore from "../../Store/useThumbnailStore";
+import useAuth from "../../Store/useAuthStore";
 import duck from "../../assets/duck.png";
 
 const Card = () => {
@@ -11,6 +11,7 @@ const Card = () => {
     thumbnail: thumbnails,
     getThumbnail,
     isGettingThumbnail,
+    updateImpression,
   } = useThumbnailStore();
   const { authUser } = useAuth();
 
@@ -19,6 +20,9 @@ const Card = () => {
   }, []);
 
   function goToThumbnailPage(id) {
+    if (!authUser) {
+      updateImpression(id);
+    }
     navigate(`/thumbnails/${id}`);
   }
 

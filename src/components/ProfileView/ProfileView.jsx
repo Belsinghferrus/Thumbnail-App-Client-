@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import useAuth from "../../context/useAuthStore";
+import useAuth from "../../Store/useAuthStore";
 import "./profileview.css";
 import { useNavigate, useParams } from "react-router-dom";
 import  ReactLinkify  from 'react-linkify';

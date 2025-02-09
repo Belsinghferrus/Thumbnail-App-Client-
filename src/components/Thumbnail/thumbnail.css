@@ -126,9 +126,8 @@
 .suggestion-container{
    display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: space-between;
-    gap: 10px;
+    gap: 20px;
     margin-top: 30px;
 }
 .suggestion-container input{

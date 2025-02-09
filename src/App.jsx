@@ -5,7 +5,7 @@ import LoginPage from './pages/login/LoginPage';
 import ThumbnailPage from './pages/thumbnail/ThumbnailPage';
 import ProfilePage from './pages/profile/ProfilePage';
 import UploadPage from './components/upload/UploadPage';
-import useAuth from './context/useAuthStore';
+import useAuth from './Store/useAuthStore';
 import { Toaster } from 'react-hot-toast';
 import Edit from './components/Edit/Edit';
 import Security from './components/Security/Security';
@@ -16,7 +16,7 @@ import ProfileView from './components/ProfileView/ProfileView';
 const App = () => {
   const {authUser, checkAuth, isCheckingAuth, userDetails, userThumbnail} = useAuth();
   // const navigate = useNavigate()
-  
+
 useEffect(() => {
   checkAuth();
 }, [checkAuth ])
@@ -28,11 +28,12 @@ console.log({userThumbnail});
 
 
 
-// if(isCheckingAuth && !authUser)
-//  return(
-//   <div className='loading'>
-//   </div>
-// )
+if(isCheckingAuth && !authUser)
+ return(
+  <div className='loading'>
+  <p>loading</p>
+  </div>
+)
 
 
   return (

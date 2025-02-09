@@ -4,7 +4,7 @@ import share from "../../../assets/share.png";
 import saved from '../../../assets/saved.png'
 import profile from '../../../assets/profile.jpg'
 
-import useThumbnailStore from "../../../context/useThumbnailStore";
+import useThumbnailStore from "../../../Store/useThumbnailStore";
 import { useNavigate, useParams } from "react-router-dom";
 
 const ThumbnailInfo = () => {
@@ -13,7 +13,7 @@ const ThumbnailInfo = () => {
     getThumbnailDetails,
     saveThumbnail,
     downloadThumbnail,
-    isLoading,
+    
 
   } = useThumbnailStore();
   const { id } = useParams();

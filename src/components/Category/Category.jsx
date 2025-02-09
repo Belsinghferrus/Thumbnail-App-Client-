@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import "./category.css";
-import useThumbnailStore from "./../../context/useThumbnailStore";
+import useThumbnailStore from "../../Store/useThumbnailStore";
 
 const tags = [
   "All",

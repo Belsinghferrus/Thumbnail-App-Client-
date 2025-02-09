@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import useThumbnailStore from '../../../context/useThumbnailStore';
+import useThumbnailStore from '../../../Store/useThumbnailStore';
 import { useParams } from 'react-router-dom';
 import ReactLinkify from 'react-linkify';
 

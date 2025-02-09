@@ -1,58 +1,59 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import useCommentStore from "../../../Store/useCommentStore";
+import { useParams } from "react-router-dom";
 
 const Suggestions = () => {
+  const { comments, getComment, postComment , isCommentLoading} = useCommentStore();
+  const [newComment, setNewComment] = useState("");
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      getComment(id);
+    }
+  }, [id, getComment]);
+  console.log(comments);
+  console.log(id);
+
+  const handlePostComment = async () => {
+    if (newComment.trim()) {
+      await postComment(id, newComment);
+      setNewComment("");
+    }
+  };
   return (
     <div className="suggestion">
-      <div className="suggestion-container">
-        <img
-          className="thumbnail-profile-pic"
-          src="https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/e76d4296-43f3-493b-9d50-f8e5c142d06c/2117667014/boys-profile-picture-screenshot.png"
-          alt=""
+      <div>
+        <input
+          type="text"
+          value={newComment}
+          onChange={(e) => setNewComment(e.target.value)}
+          placeholder="Add your suggestion"
         />
-        <input type="text" placeholder="Add your suggestion" />
-        <button>Post</button>
-      </div>
-      <div className="suggestion-display">
-        <img
-          className="thumbnail-profile-pic"
-          src="https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/e76d4296-43f3-493b-9d50-f8e5c142d06c/2117667014/boys-profile-picture-screenshot.png"
-          alt=""
-        />
-        <div className="comments">
-          <p>Akash</p>
-          <p>This is looking Awesome</p>
-        </div>
-      </div>
-      <div className="suggestion-display">
-        <img
-          className="thumbnail-profile-pic"
-          src="https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/e76d4296-43f3-493b-9d50-f8e5c142d06c/2117667014/boys-profile-picture-screenshot.png"
-          alt=""
-        />
-        <div className="comments">
-          <p>Akash</p>
-          <p>This is looking Awesome</p>
-        </div>
-      </div>
-      <div className="suggestion-display">
-        <img
-          className="thumbnail-profile-pic"
-          src="https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/e76d4296-43f3-493b-9d50-f8e5c142d06c/2117667014/boys-profile-picture-screenshot.png"
-          alt=""
-        />
-        <div className="comments">
-          <p>Akash</p>
-          <p>This is looking Awesome</p>
-        </div>
+        <button onClick={handlePostComment}>Post</button>
       </div>
       {/* D I S P L A Y  C O M M E N T  */}
-      {/* <ul>
-              {suggestions.map((suggestion, index) => (
-               <li key={index}>
-                
-               </li>
-              ))}
-            </ul> */}
+      <ul>
+        {!isCommentLoading ? comments.map((comment) => (
+          <li key={comment._id}>
+            <div className="suggestion-container">
+              <img
+                className="thumbnail-profile-pic"
+                src={comment.userId.profilePicture}
+                alt="User Profile"
+              />
+              <div>
+                <p>{comment.userId.username}</p>
+                <p>{comment.content}</p>
+              </div>
+            </div>
+          </li>
+        )) : (
+          <div>
+            loading
+          </div>
+        )}
+      </ul>
     </div>
   );
 };

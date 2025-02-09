@@ -1,5 +1,5 @@
 import  { useEffect } from 'react'
-import useThumbnailStore from './../../../context/useThumbnailStore';
+import useThumbnailStore from '../../../Store/useThumbnailStore';
 import { useParams } from 'react-router-dom';
 
 const ThumbnailTitle = () => {
