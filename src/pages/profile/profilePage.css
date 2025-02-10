@@ -153,15 +153,15 @@
 }
 
 .menu-options button:hover {
-  background: grey;
-  border-radius: 4px;
+  background: #888;
 }
 
 .menu-options button{
-  background-color: #333;
+  background-color: #fff;
   position: absolute;
   left: -60px; 
   top: 25px;
+  border-radius: 8px;
   border: 1px solid #ccc;
   padding: 10px;
   animation: fadeIn 0.3s ease forwards;

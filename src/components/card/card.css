@@ -31,7 +31,7 @@
   max-width: 100%;
   max-height: 80%;
   object-fit: cover;
-  aspect-ratio: 4 / 2.5; //this controls the width and height of card
+  aspect-ratio: 4 / 2.25; //this controls the width and height of card
 }
 
 .card-thumbnail-info {

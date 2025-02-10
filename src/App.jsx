@@ -10,11 +10,13 @@ import { Toaster } from 'react-hot-toast';
 import Edit from './components/Edit/Edit';
 import Security from './components/Security/Security';
 import ProfileView from './components/ProfileView/ProfileView';
+import useThumbnailStore from './Store/useThumbnailStore';
 
 
 
 const App = () => {
   const {authUser, checkAuth, isCheckingAuth, userDetails, userThumbnail} = useAuth();
+  const { isGettingThumbnail, isLoading} = useThumbnailStore()
   // const navigate = useNavigate()
 
 useEffect(() => {
@@ -28,7 +30,7 @@ console.log({userThumbnail});
 
 
 
-if(isCheckingAuth && !authUser)
+if( isCheckingAuth && !isGettingThumbnail)
  return(
   <div className='loading'>
   <p>loading</p>

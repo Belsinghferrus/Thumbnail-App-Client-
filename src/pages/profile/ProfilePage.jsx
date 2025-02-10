@@ -5,18 +5,25 @@ import useAuth from "../../Store/useAuthStore";
 import useThumbnailStore from "../../Store/useThumbnailStore";
 import Topbar_Profile from "../../components/topBar/Topbar_Profile";
 import { MoreVertical } from "lucide-react";
-import  ReactLinkify  from 'react-linkify';
-import profile from '../../assets/profile.jpg'
+import ReactLinkify from "react-linkify";
+import profile from "../../assets/profile.jpg";
 
 const ProfilePage = () => {
   const { authUser } = useAuth();
-  const { myThumbnail, getMyThumbnail, savedThumbnails, getSavedThumbnails } =
-    useThumbnailStore();
+  const {
+    myThumbnail,
+    getMyThumbnail,
+    savedThumbnails,
+    getSavedThumbnails,
+    deleteThumbnail,
+  } = useThumbnailStore();
   const [activeMenuId, setActiveMenuId] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const toggleMenu = (thumbnailId) => {
     setActiveMenuId(activeMenuId === thumbnailId ? null : thumbnailId);
   };
+
   useEffect(() => {
     getMyThumbnail();
     getSavedThumbnails();
@@ -25,12 +32,24 @@ const ProfilePage = () => {
   const navigate = useNavigate();
 
   const handleUpload = () => {
-    // Logic to handle thumbnail upload
     navigate("/upload");
   };
 
+  const handleDelete = async(id) => {
+    setIsLoading(true);
+    try {
+     await deleteThumbnail(id, navigate);
+    } catch (error) {
+      console.error("Error in handle delete", error);
+    } finally {
+      setIsLoading(false);
+      setActiveMenuId(null); 
+    }
+    
+  };
+
   const goToThumbnailPage = (id) => {
-    console.log("Navigating to thumbnail with ID:", id); 
+    console.log("Navigating to thumbnail with ID:", id);
     navigate(`/thumbnails/${id}`);
   };
 
@@ -40,7 +59,7 @@ const ProfilePage = () => {
       {/* Profile Picture */}
       <div className="profile-pic-container">
         <img
-          src={ authUser?.profilePicture || profile}
+          src={authUser?.profilePicture || profile}
           alt="Profile"
           className="profile-picture"
         />
@@ -52,9 +71,7 @@ const ProfilePage = () => {
       {/* Bio Section */}
       <div className="bio-section">
         <ReactLinkify>
-        <p>
-         {authUser.bio}
-        </p>
+          <p>{authUser.bio}</p>
         </ReactLinkify>
       </div>
 
@@ -69,6 +86,33 @@ const ProfilePage = () => {
                 onClick={() => goToThumbnailPage(thumbnail._id)}
                 className="thumbnail-card"
               >
+                <div className="menu-container">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleMenu(thumbnail._id);
+                    }}
+                    className="menu-button"
+                  >
+                    <MoreVertical />
+                  </button>
+                  {activeMenuId === thumbnail._id && (
+                    <div className="menu-options">
+                      {isLoading ? (
+                        <button disabled className="loading-overlay">Deleting..</button>
+                      )
+                      :
+                      (<button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDelete(thumbnail._id);
+                        }}
+                      >
+                        Delete
+                      </button>)}
+                    </div>
+                  )}
+                </div>
                 <img src={thumbnail.imageUrl} alt={thumbnail.title} />
                 <p>{thumbnail.title}</p>
               </div>

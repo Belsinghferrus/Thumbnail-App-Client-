@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import axiosInstance from "../api/axiosInstance";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const useAuth = create((set) => ({
   authUser: null,
@@ -91,7 +92,7 @@ const useAuth = create((set) => ({
   },
 
   googleOAuth: async () => {
-    set({isLoading: true})
+    set({ isLoading: true });
     try {
       const response = await axiosInstance.get("auth/google");
       set({ authUser: response.data });
@@ -99,8 +100,8 @@ const useAuth = create((set) => ({
     } catch (error) {
       console.log("error in google auth", error);
       toast.error("Something went wrong");
-    } finally{
-      set({isLoading: false})
+    } finally {
+      set({ isLoading: false });
     }
   },
 
@@ -119,6 +120,22 @@ const useAuth = create((set) => ({
       toast.error("something went wrong");
     } finally {
       set({ isLoading: false });
+    }
+  },
+
+  changePassword: async (oldPassword, newPassword, navigate) => {
+    try {
+      set({ isUpdating: true });
+      await axiosInstance.post("/auth/change-password", {
+        oldPassword,
+        newPassword,
+      });
+      toast.success("Password change successful");
+      navigate("/");
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Error updating password.");
+    } finally {
+      set({ isUpdating: false });
     }
   },
 }));

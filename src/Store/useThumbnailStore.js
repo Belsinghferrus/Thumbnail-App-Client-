@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import axiosInstance from "../api/axiosInstance";
 import toast from "react-hot-toast";
+import { Navigate } from 'react-router-dom';
 
 const useThumbnailStore = create((set) => ({
   thumbnail: [],
@@ -8,7 +9,7 @@ const useThumbnailStore = create((set) => ({
   isGettingThumbnail: false,
   myThumbnail: null,
   isUploading: false,
-  savedThumbnails: null,
+  savedThumbnails: [],
   savedImage: false,
   isLoading: false,
 
@@ -76,7 +77,7 @@ const useThumbnailStore = create((set) => ({
 
   saveThumbnail: async (thumbnailId) => {
     try {
-      await axiosInstance.post(`/thumbnails/save/${thumbnailId}`);
+     await axiosInstance.post(`/thumbnails/save/${thumbnailId}`);
       console.log(thumbnailId);
 
       set((state) => ({
@@ -85,7 +86,7 @@ const useThumbnailStore = create((set) => ({
           saves: state.thumbnailDetail.saves + 1,
         },
       }));
-      set({ savedImage: true });
+      set({ savedImage: true});
 
       toast.success("thumbnail saved successful");
     } catch (error) {
@@ -183,6 +184,22 @@ const useThumbnailStore = create((set) => ({
       set({ isGettingThumbnail: false });
     }
   },
+
+  deleteThumbnail: async(thumbnailId , Navigate) =>{
+    try {
+       await axiosInstance.delete(`thumbnails//delete/${thumbnailId}`)
+      set((state) => ({
+        thumbnails: state.thumbnails?.filter(
+          (thumbnail) => thumbnail._id !== thumbnailId
+        ) || [],
+      }));
+      Navigate(0)
+      toast.success("Thumbnail deleted successfully!");
+    } catch (error) {
+      console.error("Error in deleting Thumbnail:", error);
+      toast.error("Failed to delete the thumbnail.");
+    }
+  }
 }));
 
 export default useThumbnailStore;

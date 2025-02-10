@@ -60,10 +60,9 @@ const UploadPage = () => {
     <>
     <Logo className="logo-upload"/>
     <div className="upload-container">
-      {isUploading && (
+      {!isUploading && (
         <div className="overlay">
           <div className="spinner-container">
-            {/* You can use any spinner, here I'm using react-spinners ClipLoader */}
             <ClipLoader color="#ffffff" loading={isUploading} size={50} />
           </div>
         </div>

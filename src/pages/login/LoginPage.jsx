@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../components/topBar/component/Logo";
 import google from '../../assets/google.png'
+import toast from "react-hot-toast";
 const LoginPage = () => {
   const [loginFormData, setLoginFormData] = useState({
     email: "",
@@ -16,7 +17,7 @@ const LoginPage = () => {
     password: "",
   });
   const [showRegisterForm, setShowRegisterForm] = useState(false);
-  const { login, register, googleOAuth, isLoading } = useAuth();
+  const { login, register, googleOAuth } = useAuth();
   const navigate = useNavigate();
   //handle login Input
   const handleLoginInputChange = (e) => {
@@ -27,13 +28,19 @@ const LoginPage = () => {
   //handle Register Input
   const handleRegisterInputChange = (e) => {
     const { name, value } = e.target;
-    setRegisterFormData((prevData) => ({ ...prevData, [name]: value }));
+    setRegisterFormData(
+      (prevData) => ({ ...prevData, [name]: value })
+    );
   };
 
   //handle login submit
   const handleSubmitLogin = async (e) => {
     e.preventDefault();
     try {
+      if (loginFormData.password.length < 8) {
+        toast.error("Password must be at least 8 characters long!");
+        return;
+      }
       await login(loginFormData);
       navigate("/", { replace: true });
     } catch (error) {
@@ -44,8 +51,11 @@ const LoginPage = () => {
   //handle register submit
   const handleSubmitRegister = async (e) => {
     e.preventDefault();
-    console.log("Register form data:", registerFormData);
     try {
+      if (registerFormData.password.length < 8) {
+        toast.error("Password must be at least 8 characters long!");
+        return;
+      }
       await register(registerFormData);
       navigate("/", { replace: true });
     } catch (error) {
@@ -55,7 +65,6 @@ const LoginPage = () => {
 
   //handle google auth
   const handleGoogleAuth = async () => {
-    
    try {
     await googleOAuth();
    } catch (error) {
@@ -153,7 +162,6 @@ const LoginPage = () => {
               <p className="auth-switch">Already have an account? </p>
               <p
                 className="auth-switch-button"
-                // className="auth-secondary-button"
                 onClick={() => setShowRegisterForm(false)}
               >
                 Login

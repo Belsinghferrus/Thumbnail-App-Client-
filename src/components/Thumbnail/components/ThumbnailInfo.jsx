@@ -1,11 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import download from "../../../assets/download.png";
 import share from "../../../assets/share.png";
-import saved from '../../../assets/saved.png'
-import profile from '../../../assets/profile.jpg'
-
+import saved from "../../../assets/saved.png";
+import profile from "../../../assets/profile.jpg";
+import save from "../../../assets/save.png";
 import useThumbnailStore from "../../../Store/useThumbnailStore";
 import { useNavigate, useParams } from "react-router-dom";
+import useAuth from "../../../Store/useAuthStore";
 
 const ThumbnailInfo = () => {
   const {
@@ -13,20 +14,17 @@ const ThumbnailInfo = () => {
     getThumbnailDetails,
     saveThumbnail,
     downloadThumbnail,
-    
-
   } = useThumbnailStore();
   const { id } = useParams();
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
+  const { authUser } = useAuth();
+  const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
     if (id) {
-      getThumbnailDetails(id); 
+      getThumbnailDetails(id);
     }
   }, [id]);
-
-
 
   const handleSave = async () => {
     if (!thumbnailDetail?._id) {
@@ -34,19 +32,32 @@ const ThumbnailInfo = () => {
       return;
     }
     await saveThumbnail(thumbnailDetail._id);
+    setIsSaved(true);
   };
 
 
+  //To Update state if thumbnail is already saved
+  
+  const idToString = id.toString();
+  useEffect(() => {
+    if (authUser?.savedThumbnails?.includes(idToString)) {
+      setIsSaved(true);
+      console.log("Thumbnail is saved.");
+    } else {
+      setIsSaved(false);
+    }
+  }, [idToString, authUser]);
 
-  function goToProfileView(userId){
-    navigate(`/user/${userId}`)
+  function goToProfileView(userId) {
+    navigate(`/user/${userId}`);
   }
 
-  
   return (
-    
     <div className="thumbnail-details-container">
-      <div className="thumbnail-left-container" onClick={() => goToProfileView(thumbnailDetail.user._id)}>
+      <div
+        className="thumbnail-left-container"
+        onClick={() => goToProfileView(thumbnailDetail.user._id)}
+      >
         {thumbnailDetail?.user ? (
           <>
             <img
@@ -67,7 +78,7 @@ const ThumbnailInfo = () => {
 
       <div className="thumbnail-right-info">
         <div className="thumbnail-metric" onClick={handleSave}>
-          <img src={ saved} alt="click" />
+          <img src={isSaved ? saved : save} alt="click" />
           <p>{thumbnailDetail?.saves || 0}</p>
           {/* <p>Click</p> */}
         </div>
