@@ -1,0 +1,62 @@
+/* General Page Styling */
+.privacy-policy {
+    font-family: "Arial", sans-serif;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    line-height: 1.6;
+  }
+  
+  /* Header Section */
+  .privacy-header {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .privacy-header h1 {
+    color: #fff;
+    font-size: 32px;
+  }
+  
+  .privacy-header p {
+    color: #fff;
+    font-size: 14px;
+  }
+  
+  /* Policy Section Styling */
+  .policy-section {
+    margin: 20px 0;
+  }
+  
+  .policy-section h2 {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .policy-section p {
+    color: #fff;
+    font-size: 16px;
+    justify-items: center;
+
+  }
+  
+  /* Responsive Styling */
+  @media (max-width: 600px) {
+    .privacy-policy {
+      padding: 10px;
+    }
+  
+    .privacy-header h1 {
+      font-size: 24px;
+    }
+  
+    .policy-section h2 {
+      font-size: 20px;
+    }
+  }
+  

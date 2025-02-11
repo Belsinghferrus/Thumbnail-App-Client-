@@ -48,9 +48,9 @@ const Card = () => {
                   <img
                     className="profile-pic"
                     src={thumbnail?.user.profilePicture}
-                    alt="Channel Profile"
+                    alt="profile"
                   />
-                  <div>
+                  <div className="card-thumbnail-content">
                     <p className="title">{thumbnail.title}</p>
                     <div className="card-thumbnail-details">
                       <p>{thumbnail?.user.username}</p>

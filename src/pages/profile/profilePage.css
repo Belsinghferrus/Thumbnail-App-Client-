@@ -155,7 +155,9 @@
 .menu-options button:hover {
   background: #888;
 }
-
+.hr-profile{
+  border: 1px solid #333;
+}
 .menu-options button{
   background-color: #fff;
   position: absolute;

@@ -11,6 +11,8 @@ import Edit from './components/Edit/Edit';
 import Security from './components/Security/Security';
 import ProfileView from './components/ProfileView/ProfileView';
 import useThumbnailStore from './Store/useThumbnailStore';
+import PrivacyPolicy from './pages/privacy/PrivacyPolicy';
+import Disclaimer from './pages/Disclaimer/Disclaimer';
 
 
 
@@ -42,13 +44,16 @@ if( isCheckingAuth && !isGettingThumbnail)
     <div className='app'>
       <Routes>
         <Route path='/' element={<HomePage  /> } />
-        <Route path="/login" element={!authUser ?  <LoginPage /> : <></>} />
+        <Route path="/login" element={!authUser ?  <LoginPage /> : <Navigate to ='/' replace />} />
         <Route path='/thumbnails/:id' element={ authUser ? <ThumbnailPage /> : <Navigate to ='/login' replace />} />
         <Route path='/profile' element={authUser ? <ProfilePage /> : <Navigate to ='/login' />} />
         <Route path='/upload' element={authUser ? <UploadPage /> : <Navigate to ='/login' />} />
         <Route path='/edit' element={authUser ? <Edit /> : <Navigate to ='/login' />} />
         <Route path='/security' element={authUser ? <Security /> : <Navigate to ='/login' />} />
         <Route path='/user/:userId' element={authUser ? <ProfileView /> : <Navigate to ='/login' />} />
+        <Route path='/privacy-policy' element={<PrivacyPolicy />}/>
+        <Route path='/disclaimer' element={<Disclaimer />}/>
+        <Route path="*" element={authUser ? <Navigate to="/" replace /> : <></>} />
       </Routes>
       <Toaster />
     </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import useThumbnailStore from '../../../Store/useThumbnailStore';
 import { useParams } from 'react-router-dom';
 import ReactLinkify from 'react-linkify';
+import timeAgo from '../../../utils/timeAgo';
 
 const Description = () => {
 
@@ -33,7 +34,11 @@ const Description = () => {
 
   return (
     <div className="decription-container">
-          <h4>{thumbnailDetail?.impressions || 0} views</h4>
+      <div style={{display: "flex", gap: "10px"}}>
+        <h4>{thumbnailDetail?.impressions || 0} views</h4>
+        <p className='time-desc'>{timeAgo( thumbnailDetail?.createdAt)}</p>
+      </div>
+          
           <p className="description"> <br></br> 
           <ReactLinkify componentDecorator={linkDecorator}>
             {thumbnailDetail?.description || "No description available"}

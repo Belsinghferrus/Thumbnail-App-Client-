@@ -132,7 +132,13 @@
     transform: translateY(-3px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
+.time-desc{
+  font-size: 14px;
+  
+}
+.description{
+  font-size: 15px;
+}
 .suggestion input {
   width: 90%;
   padding: 10px 12px;

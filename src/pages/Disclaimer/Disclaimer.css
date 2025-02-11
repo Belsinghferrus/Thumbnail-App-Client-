@@ -1,0 +1,64 @@
+/* Dark Theme Web3-Inspired Styling */
+.disclaimer-page {
+  font-family: "Roboto Mono", monospace;
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px;
+  background:#333;
+  border-radius: 16px;
+  color: #c9d1d9;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+  line-height: 1.7;
+  text-align: left;
+}
+
+/* Header Section */
+.disclaimer-header {
+  text-align: center;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 20px;
+}
+
+.disclaimer-header h1 {
+  font-size: 36px;
+  color: #fff;
+}
+
+.disclaimer-header p {
+  color: #fff;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+/* Section Styling */
+.disclaimer-section {
+  margin: 30px 0;
+}
+
+.disclaimer-section h2 {
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.disclaimer-section p {
+  color: #c9d1d9;
+  font-size: 16px;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+/* Responsive Styling */
+@media (max-width: 600px) {
+  .disclaimer-page {
+    padding: 15px;
+  }
+
+  .disclaimer-header h1 {
+    font-size: 28px;
+  }
+
+  .disclaimer-section h2 {
+    font-size: 20px;
+  }
+}

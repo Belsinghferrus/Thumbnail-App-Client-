@@ -10,7 +10,7 @@
 }
 
 body{
-  min-width: 100vh;
+  /* min-width: 100vh; */
   min-height: 100vh;
   background-color: #111;
   color: white
@@ -32,5 +32,12 @@ a{
   }
   100%{
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+.body{
+    min-width: 0vh;
+    min-height: 100vh;
   }
 }

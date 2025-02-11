@@ -84,12 +84,13 @@ const Edit = () => {
             value={name}
             onChange={handleNameChange}
             required
+            className="edit-textfield"
           />
         </div>
 
         <div className="form-group">
           <label>Bio:</label>
-          <textarea value={bio} onChange={handleBioChange}></textarea>
+          <textarea className="edit-textfield" value={bio} onChange={handleBioChange}></textarea>
         </div>
         {isProfileUpdating ? (
           <button type="submit" className="update-btn">

@@ -75,6 +75,7 @@ const ProfilePage = () => {
         </ReactLinkify>
       </div>
 
+<hr className="hr-profile"/><br/>
       {/* Uploaded Thumbnails Section */}
       <div className="thumbnails-section">
         <h2>Uploaded Thumbnails</h2>

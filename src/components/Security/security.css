@@ -24,22 +24,25 @@
   }
   
   input {
-    width: 100%;
+    width: 95%;
     padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
+    border-radius: 8px;
+    border: 2px solid #444;
+    background: #333;
+    color: white;
+
   }
   
   input:focus {
     outline: none;
-    border-color: #4caf50;
+    border-color: #999;
   }
   
   .update-btn {
     width: 100%;
     padding: 12px;
-    background: #4caf50;
-    color: white;
+    background: #fff;
+    color: black;
     border: none;
     border-radius: 4px;
     cursor: pointer;
