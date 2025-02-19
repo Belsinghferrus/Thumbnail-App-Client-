@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import axiosInstance from "../api/axiosInstance";
 import toast from "react-hot-toast";
-import { Navigate } from 'react-router-dom';
 
 const useThumbnailStore = create((set) => ({
   thumbnail: [],
@@ -11,7 +10,7 @@ const useThumbnailStore = create((set) => ({
   isUploading: false,
   savedThumbnails: [],
   savedImage: false,
-  isLoading: false,
+  isThumbLoading: false,
 
   setThumbnail: (thumbnail) => {
     set({ thumbnail });
@@ -53,14 +52,16 @@ const useThumbnailStore = create((set) => ({
   },
 
   getThumbnailDetails: async (id) => {
-    set({ isLoading: true });
+   
+    set({ isThumbLoading: true });
     try {
       const response = await axiosInstance.get(`thumbnails/${id}`);
-      set({ thumbnailDetail: response.data });
+      set({ thumbnailDetail: response.data  });
     } catch (error) {
       console.log("Error in getting thumbnail details", error);
-    } finally {
-      set({ isLoading: false });
+    }
+     finally {
+      set({ isThumbLoading: false });
     }
   },
 
@@ -141,6 +142,8 @@ const useThumbnailStore = create((set) => ({
   updateImpression: async (thumbnailId) => {
     try {
       await axiosInstance.post(`/thumbnails/impression/${thumbnailId}`);
+      console.log("impression",thumbnailId);
+      
       set((state) => ({
         thumbnailDetail: {
           ...state.thumbnailDetail,
@@ -153,22 +156,22 @@ const useThumbnailStore = create((set) => ({
   },
 
   //CTR
-  updateCtr: async (thumbnailId) => {
-    try {
-      const ctr = await axiosInstance.post(`/thumbnails/ctr/${thumbnailId}`);
-      const thumbnailDetails = await axiosInstance.get(
-        `thumbnails/${thumbnailId}`
-      );
-      const impression = thumbnailDetails.impression;
-      console.log(impression);
-      console.log(ctr);
-      //     const ctrResponse = thumbnailDetails?.impressions > 0
-      // ? ((thumbnailDetails?.clicks || 0) / thumbnailDetails.impressions * 100).toFixed(2)
-      // : 0;
-    } catch (error) {
-      console.error("Error updating ctr:", error);
-    }
-  },
+  // updateCtr: async (thumbnailId) => {
+  //   try {
+  //     const ctr = await axiosInstance.post(`/thumbnails/ctr/${thumbnailId}`);
+  //     const thumbnailDetails = await axiosInstance.get(
+  //       `thumbnails/${thumbnailId}`
+  //     );
+  //     const impression = thumbnailDetails.impression;
+  //     console.log(impression);
+  //     console.log(ctr);
+  //         const ctrResponse = thumbnailDetails?.impressions > 0
+  //     ? ((thumbnailDetails?.clicks || 0) / thumbnailDetails.impressions * 100).toFixed(2)
+  //     : 0;
+  //   } catch (error) {
+  //     console.error("Error updating ctr:", error);
+  //   }
+  // },
 
   //FILTER THUMBNAIL
   filterThumbnail: async (category) => {

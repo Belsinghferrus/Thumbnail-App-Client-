@@ -49,6 +49,7 @@
   @media (max-width: 600px) {
     .privacy-policy {
       padding: 10px;
+      max-width: 90vw;
     }
   
     .privacy-header h1 {

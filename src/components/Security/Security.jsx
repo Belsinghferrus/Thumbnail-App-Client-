@@ -32,7 +32,7 @@ const Security = () => {
     <div>
       <Logo />
       <div className="change-password-container">
-      <h2>Change Password</h2>
+      <h2 className='head-h2'>Change Password</h2>
       <form onSubmit={handlePasswordChange}>
         <div className="form-group">
           <label>Old Password</label>

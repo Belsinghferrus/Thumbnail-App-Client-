@@ -52,6 +52,7 @@
 @media (max-width: 600px) {
   .disclaimer-page {
     padding: 15px;
+    max-width: 90vw;
   }
 
   .disclaimer-header h1 {

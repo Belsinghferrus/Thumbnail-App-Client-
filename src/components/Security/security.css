@@ -8,7 +8,8 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
-  h2 {
+  .head-h2 {
+    margin-bottom: 16px;
     text-align: center;
     color: #ffffff;
   }
@@ -23,7 +24,7 @@
     font-weight: bold;
   }
   
-  input {
+ .form-group input {
     width: 95%;
     padding: 10px;
     border-radius: 8px;
@@ -54,3 +55,9 @@
     cursor: not-allowed;
   }
   
+
+@media screen and (max-width: 780px) {
+  .change-password-container{
+    width: 80vw;;
+  }
+}

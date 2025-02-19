@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import download from "../../../assets/download.png";
 import share from "../../../assets/share.png";
@@ -8,9 +9,8 @@ import useThumbnailStore from "../../../Store/useThumbnailStore";
 import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../../Store/useAuthStore";
 
-const ThumbnailInfo = () => {
+const ThumbnailInfo = ({thumbnailDetail}) => {
   const {
-    thumbnailDetail,
     getThumbnailDetails,
     saveThumbnail,
     downloadThumbnail,
@@ -20,11 +20,6 @@ const ThumbnailInfo = () => {
   const { authUser } = useAuth();
   const [isSaved, setIsSaved] = useState(false);
 
-  useEffect(() => {
-    if (id) {
-      getThumbnailDetails(id);
-    }
-  }, [id]);
 
   const handleSave = async () => {
     if (!thumbnailDetail?._id) {

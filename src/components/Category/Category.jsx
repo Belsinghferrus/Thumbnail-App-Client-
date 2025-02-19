@@ -56,7 +56,9 @@ const Category = () => {
   };
 
   return (
-    <div
+    <div>
+      <div></div>
+      <div
       className="category"
       ref={containerRef}
       onMouseDown={handleMouseDown}
@@ -74,6 +76,8 @@ const Category = () => {
         </button>
       ))}
     </div>
+    </div>
+    
   );
 };
 

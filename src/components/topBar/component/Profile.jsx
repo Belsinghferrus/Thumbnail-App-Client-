@@ -1,19 +1,21 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../../Store/useAuthStore";
 import profile from "../../../assets/profile.jpg";
-import user from '../../../assets/user.png'
-import edit from '../../../assets/edit.png'
-import password from '../../../assets/password.png'
-import privacy from '../../../assets/privacy.png'
-import file from '../../../assets/file.png'
-import exit from '../../../assets/exit.png'
+import user from "../../../assets/user.png";
+import edit from "../../../assets/edit.png";
+import password from "../../../assets/password.png";
+import privacy from "../../../assets/privacy.png";
+import file from "../../../assets/file.png";
+import exit from "../../../assets/exit.png";
 // import password from '../../../assets/password.png'
+import { useClickOutside } from "react-haiku";
 
 const Profile = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { authUser, logout } = useAuth();
   const navigate = useNavigate();
+  const ref = useRef(null);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -26,6 +28,11 @@ const Profile = () => {
       console.error("Logout failed", error);
     }
   };
+  const handleClickOutside = () => {
+    setIsOpen(!isOpen);
+  };
+
+  useClickOutside(ref, handleClickOutside);
   return (
     <div className="profile-dropdown">
       <button onClick={toggleDropdown} className="profile-image">
@@ -36,7 +43,7 @@ const Profile = () => {
         />
       </button>
       {isOpen && (
-        <div className="dropdown-menu">
+        <div className="dropdown-menu" ref={ref}>
           <div className="menu-profile-image">
             <img src={authUser?.profilePicture || profile} />
             <p>
@@ -48,18 +55,51 @@ const Profile = () => {
           <hr />
           {authUser ? (
             <>
-              <li className="menu-list" onClick={() => navigate("/profile")}><img src={user}/>Profile</li>
-              <li className="menu-list" onClick={() => navigate("/edit")}><img src={edit}/>Edit</li>
-              <li className="menu-list" onClick={() => navigate("/security")}><img src={password}/>Security</li>
-              <li className="menu-list" onClick={() => navigate("/disclaimer")}><img src={file}/>Disclaimer</li>
-              <li className="menu-list" onClick={() => navigate("/privacy-policy")}><img src={privacy}/>Privacy Policy</li>
-              <li className="menu-list" onClick={handleLogout}><img src={exit}/>Logout</li>
+              <li className="menu-list" onClick={() => navigate("/profile")}>
+                <img src={user} />
+                Profile
+              </li>
+              <li className="menu-list" onClick={() => navigate("/edit")}>
+                <img src={edit} />
+                Edit
+              </li>
+              <li className="menu-list" onClick={() => navigate("/security")}>
+                <img src={password} />
+                Security
+              </li>
+              <li className="menu-list" onClick={() => navigate("/disclaimer")}>
+                <img src={file} />
+                Disclaimer
+              </li>
+              <li
+                className="menu-list"
+                onClick={() => navigate("/privacy-policy")}
+              >
+                <img src={privacy} />
+                Privacy Policy
+              </li>
+              <li className="menu-list" onClick={handleLogout}>
+                <img src={exit} />
+                Logout
+              </li>
             </>
           ) : (
             <>
-              <li className="menu-list" onClick={() => navigate("/login")}><img src={exit}/>Login</li>
-              <li className="menu-list" onClick={() => navigate("/disclaimer")}><img src={file}/>Disclaimer</li>
-              <li className="menu-list" onClick={() => navigate("/privacy-policy")}><img src={privacy}/>Privacy Policy</li>
+              <li className="menu-list" onClick={() => navigate("/login")}>
+                <img src={exit} />
+                Login
+              </li>
+              <li className="menu-list" onClick={() => navigate("/disclaimer")}>
+                <img src={file} />
+                Disclaimer
+              </li>
+              <li
+                className="menu-list"
+                onClick={() => navigate("/privacy-policy")}
+              >
+                <img src={privacy} />
+                Privacy Policy
+              </li>
             </>
           )}
         </div>

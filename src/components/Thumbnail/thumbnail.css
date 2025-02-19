@@ -58,7 +58,7 @@
 .thumbnail-title {
   font-size: 1.2rem;
   font-weight: bold;
-  margin: 0 0 10px;
+  margin: 0 0 20px;
 }
 
 .thumbnail-user-name {
@@ -277,4 +277,30 @@
 
 .post-btn:disabled {
   cursor: not-allowed;
+}
+.detail-load{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh; 
+}
+.details-spinner{
+
+  border: 4px solid rgba(255, 255, 255, 0.3); /* Light gray color for the background */
+  border-top: 4px solid red; /* Red color for the rotating part */
+  border-radius: 50%;
+  width: 40px; /* Size of the spinner */
+  height: 40px; /* Size of the spinner */
+  animation: spin 1s linear infinite; /* Animation to make the spinner rotate */
+  margin: auto;
+  display: block;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); /* Start from 0 degrees */
+  }
+  100% {
+    transform: rotate(360deg); /* Rotate to 360 degrees */
+  }
 }

@@ -1,9 +1,11 @@
 import React from "react";
 import "./Disclaimer.css";
+import Logo from "../../components/topBar/component/Logo";
 
 const Disclaimer = () => {
   return (
     <div className="disclaimer-page">
+      <Logo />
       <header className="disclaimer-header">
         <h1>Disclaimer</h1>
         <p>Stay informed and make responsible decisions when using our services.</p>

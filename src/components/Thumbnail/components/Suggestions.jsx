@@ -1,26 +1,28 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import useCommentStore from "../../../Store/useCommentStore";
 import { useNavigate, useParams } from "react-router-dom";
 import timeAgo from "./../../../utils/timeAgo";
 import useAuth from "./../../../Store/useAuthStore";
 
-const Suggestions = () => {
-  const { comments, getComment, postComment, isCommentLoading } =
-    useCommentStore();
+const Suggestions = ({ id, getComment }) => {
+  const { comments,  postComment, isCommentLoading } = useCommentStore();
   const { authUser } = useAuth();
   const [newComment, setNewComment] = useState("");
   const [isFocused, setIsFocused] = useState(false);
-  const { id } = useParams();
+  // const { id } = useParams();
   const navigate = useNavigate()
+  const [hasFetchedComments, setHasFetchedComments] = useState(false);
 
   useEffect(() => {
-    if (id) {
+    if (id && !hasFetchedComments) {
       getComment(id);
+      setHasFetchedComments(true);
     }
-  }, [id, getComment]);
+  }, [id, getComment, hasFetchedComments]);
 
   // console.log(comments);
-  console.log(id);
+  // console.log(id);
 
 
 

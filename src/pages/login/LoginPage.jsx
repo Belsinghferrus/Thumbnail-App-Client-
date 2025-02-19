@@ -87,7 +87,10 @@ const LoginPage = () => {
 
   return (
     <div className="login-page">
-      <Logo />
+      <div className="logo-login">
+         <Logo />
+      </div>
+     
       <div className="login-card">
         <h1 className="auth-title"> Login or Register</h1>
 

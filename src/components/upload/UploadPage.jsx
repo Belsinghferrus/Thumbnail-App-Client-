@@ -87,6 +87,7 @@ const UploadPage = () => {
               <img src={preview} alt="Preview" />
             </div>
           )}
+          <p className="preview-format-p" >Allowed format 1280 x 720px</p>
         </div>
 
         {/* Title Input */}

@@ -49,7 +49,6 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-
 }
 .title-section-upload .input-box {
   width: 95%;
@@ -100,15 +99,30 @@
 /* Dropdown Select */
 select.input-box {
   appearance: none;
-  background: #282828 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 5'%3E%3Cpath fill='%23cfcfcf' d='M0 0h10L5 5z'/%3E%3C/svg%3E") no-repeat right 10px center;
+  background: #282828
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 5'%3E%3Cpath fill='%23cfcfcf' d='M0 0h10L5 5z'/%3E%3C/svg%3E")
+    no-repeat right 10px center;
   background-size: 10px 5px;
 }
 
-.logo-upload{
+.logo-upload {
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   justify-content: flex-start;
   margin-top: 20px;
-  padding: 10px;;
+  padding: 10px;
 }
 
+.preview-format-p {
+  font-size: 12px;
+  color: #999;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 780px) {
+  .upload-container {
+    max-width: 80vw;
+  }
+}

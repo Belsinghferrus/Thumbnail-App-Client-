@@ -1,13 +1,14 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react'
 import useThumbnailStore from '../../../Store/useThumbnailStore';
 import { useParams } from 'react-router-dom';
 import ReactLinkify from 'react-linkify';
 import timeAgo from '../../../utils/timeAgo';
 
-const Description = () => {
+const Description = ({thumbnailDetail}) => {
 
   
-  const {thumbnailDetail, getThumbnailDetails, updateImpression} = useThumbnailStore();
+  const { getThumbnailDetails, updateImpression} = useThumbnailStore();
   const {id} = useParams()
   const [hasImpressionUpdated, setHasImpressionUpdated] = useState(false);
 
@@ -23,14 +24,14 @@ const Description = () => {
     </a>
   );
 
-  useEffect(() => {
-    if (id && !hasImpressionUpdated) {
-      getThumbnailDetails(id).then(() => {
-        updateImpression(id);
-        setHasImpressionUpdated(true); 
-      });
-    }
-  }, [id, hasImpressionUpdated]);
+  // useEffect(() => {
+  //   if (id && !hasImpressionUpdated && !thumbnailDetail ) {
+  //     getThumbnailDetails(id).then(() => {
+  //       updateImpression(id);
+  //       setHasImpressionUpdated(true); 
+  //     });
+  //   }
+  // }, [id, hasImpressionUpdated, thumbnailDetail, getThumbnailDetails]);
 
   return (
     <div className="decription-container">

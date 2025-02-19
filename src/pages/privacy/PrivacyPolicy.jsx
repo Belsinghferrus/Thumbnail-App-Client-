@@ -1,10 +1,12 @@
 
 
+import Logo from "../../components/topBar/component/Logo";
 import "./PrivacyPolicy.css";
 
 const PrivacyPolicy = () => {
   return (
     <div className="privacy-policy">
+      <Logo />
       <header className="privacy-header">
         <h1>Privacy Policy</h1>
         <p>Your privacy is important to us. Please read this policy carefully.</p>

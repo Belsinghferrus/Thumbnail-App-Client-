@@ -10,10 +10,11 @@
 }
 
 body{
-  /* min-width: 100vh; */
-  min-height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
   background-color: #111;
-  color: white
+  color: white;
+  overflow: auto;
 }
 
 a{
@@ -21,10 +22,10 @@ a{
   color:inhert;
 }
 
-.app{
+/* .app{
   width: 100%;
   margin: auto;
-}
+} */
 
 @keyframes fadeIn {
   0%{
@@ -35,9 +36,49 @@ a{
   }
 }
 
-@media screen and (max-width: 768px) {
-.body{
-    min-width: 0vh;
-    min-height: 100vh;
+/* From Uiverse.io by mrhyddenn */ 
+.progress-loader {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.progress-loader {
+  width: 150px;
+  background: rgba(236, 236, 238, 0.253);
+  height: 3px;
+  border-radius: 7px;
+}
+
+.progress {
+  content: '';
+  width: 1px;
+  height: 3px;
+  border-radius: 7px;
+  background: red;
+  transition: 0.5s;
+  animation: loading1274 2s ease infinite;
+}
+
+@keyframes loading1274 {
+  0% {
+    width: 0%;
+  }
+
+  10% {
+    width: 10%;
+  }
+
+  50% {
+    width: 40%;
+  }
+
+  60% {
+    width: 60%;
+  }
+
+  100% {
+    width: 100%;
   }
 }

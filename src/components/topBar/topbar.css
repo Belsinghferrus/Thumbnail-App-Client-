@@ -27,12 +27,24 @@
   border: 1px solid #555;
   background-color: #222;
   border-radius: 20px 0 0 20px;
-  transition: background-color 0.3s ease;
+  transition: transform 0.3s ease;
+}
+
+.expanded-search-input {
+  color: #fff;
+  flex-grow: 1;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #555;
+  background-color: #222;
+  border-radius: 20px 0 0 20px;
+  
 }
 
 .search-input:focus {
   outline: none;
   background-color: #222;
+  transition: transform 0.3s ease;
 }
 
 .search-button {
@@ -50,17 +62,10 @@
   background-color: #777;
 }
 
-@media (max-width: 480px) {
-  .search-bar {
-    width: 80%;
-  }
-}
-
 /* ---------------PROFILE--------------- */
 
 .profile-dropdown {
   position: relative;
-  
 }
 
 .profile-image {
@@ -103,7 +108,6 @@
 
 .dropdown-menu li:hover {
   background-color: #666;
-
 }
 
 .dropdown-menu div {
@@ -112,22 +116,22 @@
   text-align: left;
 }
 
-
 .logo {
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
-.logo img{
+.logo img {
   height: 50px;
-  width: 200px;
+  width: auto;
 }
 .menu-navigate-login {
   cursor: "pointer";
   width: "100px";
   height: "40px";
 }
+
 .menu-profile-image {
   display: flex;
   height: 100%;
@@ -141,18 +145,75 @@
   border-radius: 50px;
 }
 
-.menu-profile-image p{
-  color: white
+.menu-profile-image p {
+  color: white;
 }
 
-.menu-list img{
+.menu-list img {
   filter: invert();
   margin-right: 10px;
 }
+.mobile-logo {
+  display: none;
+}
 
 @media screen and (max-width: 768px) {
-  .content-grid {
-    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  .topbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px;
+    gap: 10px;
   }
 
+  .desktop-logo {
+    display: none;
+  }
+
+  .mobile-logo {
+    display: block;
+    width: 50px;
+    height: auto;
+  }
+
+  .logo img {
+    height: 50px;
+    width: 50px;
+  }
 }
+
+@media screen and (max-width: 480px) {
+  .search-bar {
+    width: 100%;
+  }
+  .expanded-search-bar{
+    width:100%;
+    display:flex;
+    justify-content: center;
+  }
+  .back-button{
+    display: block;
+    margin-top: 10px;
+    margin-right: 10px;
+
+  }
+  .search-input{
+    width:100%;
+  }
+  .expanded-search-input{
+    width: 55vw;
+  }
+  .logo-home {
+    display: none;
+  }
+  .logo img {
+    display: hidden;
+  }
+  .search input:focus{
+    transition: transform 0.3s ease;
+
+  }
+}
+
+
+

@@ -89,7 +89,7 @@
   right: 30px;
   width: 60px;
   height: 60px;
-  background-color: #007bff;
+  background-color: red;
   color: white;
   border-radius: 50%;
   display: flex;
@@ -169,4 +169,9 @@
   animation: fadeIn 0.3s ease forwards;
 }
   
- 
+@media screen and (max-width: 780px) {
+  .upload-icon{
+    bottom: 20vh;
+    right: 30px;
+  }
+}

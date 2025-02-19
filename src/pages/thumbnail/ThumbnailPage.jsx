@@ -1,17 +1,18 @@
-import './thumbnail.css'
-import Thumbnail from './../../components/Thumbnail/Thumbnail';
-import Topbar_Profile from '../../components/topBar/Topbar_Profile';
+import "./thumbnail.css";
+import Thumbnail from "./../../components/Thumbnail/Thumbnail";
+import Topbar_Profile from "../../components/topBar/Topbar_Profile";
+
 
 const ThumbnailPage = () => {
+
+  
   return (
-    <div className='thumbnail-page'>
+    <div className="thumbnail-page">
       <Topbar_Profile />
-      <br/>
+      <br /> 
       <Thumbnail />
     </div>
-    
+  );
+};
 
-  )
-}
-
-export default ThumbnailPage
+export default ThumbnailPage;

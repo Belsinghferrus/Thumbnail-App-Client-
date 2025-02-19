@@ -1,17 +1,18 @@
+/* eslint-disable react/prop-types */
 import  { useEffect } from 'react'
 import useThumbnailStore from '../../../Store/useThumbnailStore';
 import { useParams } from 'react-router-dom';
 
-const ThumbnailTitle = () => {
+const ThumbnailTitle = ({thumbnailDetail}) => {
 
-  const {thumbnailDetail, getThumbnailDetails} = useThumbnailStore();
+  const { getThumbnailDetails} = useThumbnailStore();
   const {id} = useParams()
 
-  useEffect(() => {
-    if(id){
-      getThumbnailDetails(id)
-    }
-  }, [id]);
+  // useEffect(() => {
+  //   if (id && !thumbnailDetail) {
+  //     getThumbnailDetails(id);
+  //   }
+  // }, [id, thumbnailDetail, getThumbnailDetails]); 
 
 
   return (

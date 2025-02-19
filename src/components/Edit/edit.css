@@ -115,3 +115,11 @@ textarea:focus {
 .update-btn:active {
   transform: translateY(1px);
 }
+
+
+@media screen and (max-width: 768px) {
+  .edit-profile {
+    max-width: 75vw;
+  }
+
+}
