@@ -3,7 +3,7 @@ import "./Edit.css";
 import useAuth from "../../Store/useAuthStore";
 import { useNavigate } from "react-router-dom";
 import profile from '../../assets/profile.jpg'
-import ClipLoader from "react-spinners/ClipLoader";
+// import ClipLoader from "react-spinners/ClipLoader";
 import Logo from "../topBar/component/Logo";
 
 const Edit = () => {
@@ -51,9 +51,9 @@ const Edit = () => {
     <div className="edit-profile">
       {!isProfileUpdating && (
         <div className="overlay">
-          <div className="spinner-container">
+          {/* <div className="spinner-container">
             <ClipLoader color="#ffffff" loading={isProfileUpdating} size={50} />
-          </div>
+          </div> */}
         </div>
       )}
       <h2>Edit Profile</h2>

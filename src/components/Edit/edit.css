@@ -1,10 +1,8 @@
-
-
 /* Main Edit Profile Container */
 .edit-profile {
   background: #2c2f33;
   padding: 40px;
-  max-width: 500px;
+  width: 500px;
   margin: 50px auto;
   border-radius: 12px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -68,12 +66,12 @@
   margin-bottom: 20px;
 }
 
-label {
+/* label {
   font-weight: 600;
   display: block;
   margin-bottom: 8px;
   color: #e3e3e3;
-}
+} */
 
 .edit-textfield{
   width: 100%;
