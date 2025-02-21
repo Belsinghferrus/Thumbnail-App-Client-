@@ -13,12 +13,13 @@ import ProfileView from "./components/ProfileView/ProfileView";
 import useThumbnailStore from "./Store/useThumbnailStore";
 import PrivacyPolicy from "./pages/privacy/PrivacyPolicy";
 import Disclaimer from "./pages/Disclaimer/Disclaimer";
-
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth, userDetails, userThumbnail } =
     useAuth();
-  const { isGettingThumbnail, getThumbnail } = useThumbnailStore();
+  const { isGettingThumbnail } = useThumbnailStore();
   const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
@@ -46,6 +47,8 @@ const App = () => {
 
   return (
     <div className="app">
+      <Analytics/>
+      <SpeedInsights/>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route

@@ -33,6 +33,7 @@ const Profile = () => {
   };
 
   useClickOutside(ref, handleClickOutside);
+
   return (
     <div className="profile-dropdown">
       <button onClick={toggleDropdown} className="profile-image">

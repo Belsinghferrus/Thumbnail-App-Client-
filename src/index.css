@@ -7,6 +7,13 @@
   box-sizing:0;
   font-family: roboto ;
   scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+div:focus {
+  outline: none;
 }
 
 body{
