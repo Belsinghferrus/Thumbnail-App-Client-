@@ -52,7 +52,7 @@ const Card = () => {
   return (
     <div className="main-component">
       <div className="content-grid">
-        {!loadedThumbnails.length > 0
+        {loadedThumbnails.length > 0
           ? loadedThumbnails.map((thumbnail) => (
               <ThumbnailCard
                 key={thumbnail._id}
