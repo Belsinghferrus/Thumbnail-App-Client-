@@ -2,8 +2,9 @@ import { create } from "zustand";
 import axiosInstance from "../api/axiosInstance";
 import toast from "react-hot-toast";
 
-const useThumbnailStore = create((set) => ({
+const useThumbnailStore = create((set, get) => ({
   thumbnail: [],
+  loadedThumbnails: [], 
   thumbnailDetail: null,
   isGettingThumbnail: false,
   myThumbnail: null,
@@ -11,23 +12,52 @@ const useThumbnailStore = create((set) => ({
   savedThumbnails: [],
   savedImage: false,
   isThumbLoading: false,
+  page: 1,
+  hasMoreThumbnail: true,
+  lastViewedThumbnailId: null,
+  lastScrollPosition: 0,
+
 
   setThumbnail: (thumbnail) => {
     set({ thumbnail });
   },
 
-  getThumbnail: async (query = "") => {
+  getThumbnail: async (query = "", page ) => {
+    const {  isGettingThumbnail, hasMoreThumbnail} = get();
+    if(isGettingThumbnail || !hasMoreThumbnail) return;
     set({ isGettingThumbnail: true });
     try {
-      let uri = query ? `/thumbnails/search?query=${query}` : "/thumbnails/";
+      let uri = query 
+      ? `/thumbnails/search?query=${query}&page=${page}&limit=12` 
+      : `/thumbnails?page=${page}&limit=12`;
       const response = await axiosInstance.get(uri);
-      set({ thumbnail: response.data });
+      if (response.data.length > 0) {
+        set ((state) => ({
+          thumbnail: [ ...response.data],
+          loadedThumbnails: page === 1
+          ? [...response.data]
+          : [...state.loadedThumbnails, ...response.data],
+          page: page + 1,
+      }));
+      } else {
+        set({ hasMoreThumbnail: false }); 
+      }
     } catch (error) {
       console.log("Error in getThumbnail", error);
     } finally {
       set({ isGettingThumbnail: false });
     }
   },
+
+  setScrollPosition: (position) => set({ lastScrollPosition: position }),
+
+  resetThumbnails: () => set({ 
+    loadedThumbnails: [], 
+    page: 1, 
+    hasMoreThumbnail: true,
+    lastViewedThumbnailId: null
+  }), 
+
 
   uploadThumbnail: async (formData) => {
     set({ isUploading: true });
@@ -142,8 +172,6 @@ const useThumbnailStore = create((set) => ({
   updateImpression: async (thumbnailId) => {
     try {
       await axiosInstance.post(`/thumbnails/impression/${thumbnailId}`);
-      console.log("impression",thumbnailId);
-      
       set((state) => ({
         thumbnailDetail: {
           ...state.thumbnailDetail,
@@ -174,13 +202,17 @@ const useThumbnailStore = create((set) => ({
   // },
 
   //FILTER THUMBNAIL
-  filterThumbnail: async (category) => {
+  filterThumbnail: async (category, page = 1) => {
     set({ isGettingThumbnail: true });
     try {
       const response = await axiosInstance.get(
-        `/thumbnails/filter/${category}`
+        `/thumbnails/filter/${category}?page=${page}&limit=1`
       );
-      set({ thumbnail: response.data.thumbnails });
+      // set({ thumbnail: response.data.thumbnails });
+      set ({
+        loadedThumbnails: page === 1 ? response.data.thumbnails : [...get().thumbnail, ...response.data.thumbnails], 
+        hasMoreThumbnail: response.data.thumbnails.length === 1, 
+      });
     } catch (error) {
       console.error("Error updating filerThumbnail:", error);
     } finally {

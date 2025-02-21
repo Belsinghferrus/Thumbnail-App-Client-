@@ -1,6 +1,7 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./category.css";
 import useThumbnailStore from "../../Store/useThumbnailStore";
+import { useNavigate } from "react-router-dom";
 
 const tags = [
   "All",
@@ -26,7 +27,11 @@ const Category = () => {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
-  const { filterThumbnail, getThumbnail } = useThumbnailStore();
+  const { filterThumbnail, getThumbnail, loadedThumbnails } = useThumbnailStore();
+  const [page, setPage] = useState(1);
+  const navigate = useNavigate()
+
+
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
@@ -46,12 +51,19 @@ const Category = () => {
   const handleMouseLeave = () => {
     setIsDragging(false);
   };
+
+  console.log("filter",loadedThumbnails);
+
+
   const handleClick = (tag) => {
     setActiveIndex(tags.indexOf(tag));
+    setPage(1)
     if (tag === "All") {
-      getThumbnail();
+      // useThumbnailStore.setState({ thumbnail: [] });
+      getThumbnail("", 1);
     } else {
-      filterThumbnail(tag);
+      useThumbnailStore.setState({ thumbnail: [] });
+      filterThumbnail(tag, 1);
     }
   };
 

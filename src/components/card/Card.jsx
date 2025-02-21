@@ -1,149 +1,90 @@
-// import { useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
-// import "./card.css";
-// import useThumbnailStore from "../../Store/useThumbnailStore";
-// import useAuth from "../../Store/useAuthStore";
-// import duck from "../../assets/duck.png";
-
-// const Card = () => {
-//   const navigate = useNavigate();
-//   const {
-//     thumbnail: thumbnails,
-//     getThumbnail,
-//     isGettingThumbnail,
-//     updateImpression,
-//   } = useThumbnailStore();
-//   const { authUser } = useAuth();
-
-//   useEffect(() => {
-//     getThumbnail();
-//   }, []);
-
-//   function goToThumbnailPage(id) {
-//     if (!authUser) {
-//       updateImpression(id);
-//     }
-//     navigate(`/thumbnails/${id}`);
-//   }
-
-//   return (
-//     <div className="main-component">
-//       <div className="content-grid">
-//         {!isGettingThumbnail ? (
-//           thumbnails.length > 0 ? (
-//             thumbnails?.map((thumbnail) => (
-//               <div
-//                 key={thumbnail._id}
-//                 onClick={() => goToThumbnailPage(thumbnail._id)}
-//                 className="card"
-//               >
-//                 <div className="card-thumbnail-container">
-//                   <img
-//                     className="card-thumbnail-img"
-//                     src={thumbnail.imageUrl}
-//                     alt={thumbnail.title}
-//                   />
-//                 </div>
-//                 <div className="card-thumbnail-info">
-//                   <img
-//                     className="profile-pic"
-//                     src={thumbnail?.user.profilePicture}
-//                     alt="profile"
-//                   />
-//                   <div className="card-thumbnail-content">
-//                     <p className="title">{thumbnail.title}</p>
-//                     <div className="card-thumbnail-details">
-//                       <p>{thumbnail?.user.username}</p>
-//                       <span>
-//                         {authUser ? thumbnail?.impressions : "?"} Clicks
-//                       </span>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//             ))
-//           ) : (
-//             <div className="no-thumbnail-wrapper">
-//               <div className="no-thumbnail">
-//                 <img src={duck} />
-//                 <p>No Thumbnails Yet !!!</p>
-//               </div>
-//             </div>
-//           )
-//         ) : (
-//           Array(12)
-//             .fill()
-//             .map((_, index) => (
-//               <div key={index} className="skeleton-card">
-//                 <div className="skeleton-thumbnail" />
-//                 <div className="skeleton-title" />
-//                 <div className="skeleton-cta" />
-//               </div>
-//             ))
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Card;
-
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./card.css";
 import useThumbnailStore from "../../Store/useThumbnailStore";
 import useAuth from "../../Store/useAuthStore";
 import duck from "../../assets/duck.png";
 import ThumbnailCard from "./ThumbnailCard";
+import { CheckCircle } from "lucide-react";
 
 const Card = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const {
-    thumbnail: thumbnails,
     getThumbnail,
     isGettingThumbnail,
     updateImpression,
+    hasMoreThumbnail,
+    loadedThumbnails,
+    page,
+    lastScrollPosition,
+    setScrollPosition,
   } = useThumbnailStore();
   const { authUser } = useAuth();
 
   useEffect(() => {
-    getThumbnail();
+    if (loadedThumbnails.length === 0) {
+      getThumbnail("", 1);
+    }
   }, []);
+
+
+  useEffect(() => {
+    if(location.pathname === "/" && lastScrollPosition > 0){
+      window.scrollTo(0, lastScrollPosition)
+    }
+  })
 
   function goToThumbnailPage(id) {
     if (!authUser) {
       updateImpression(id);
     }
+    setScrollPosition(window.scrollY)
     navigate(`/thumbnails/${id}`);
   }
+
+
+  const handleLoadClick = () => {
+    getThumbnail("", page);
+  };
+
 
   return (
     <div className="main-component">
       <div className="content-grid">
-        {!isGettingThumbnail ? (
-          thumbnails.length > 0 ? (
-            thumbnails.map((thumbnail) => (
+        {loadedThumbnails.length > 0
+          ? loadedThumbnails.map((thumbnail) => (
               <ThumbnailCard
                 key={thumbnail._id}
+                id={thumbnail._id}
                 thumbnail={thumbnail}
                 goToThumbnailPage={goToThumbnailPage}
                 authUser={authUser}
               />
             ))
-          ) : (
-            <div className="no-thumbnail-wrapper">
-              <div className="no-thumbnail">
-                <img src={duck} alt="No Thumbnails" />
-                <p>No Thumbnails Yet !!!</p>
-              </div>
-            </div>
-          )
-        ) : (
-          Array(12)
-            .fill()
-            .map((_, index) => <SkeletonCard key={index} />)
-        )}
+          : Array(9)
+              .fill()
+              .map((_, index) => <SkeletonCard key={index} />)}
       </div>
+      {hasMoreThumbnail ? (
+        <div className="main-load-more-comp">
+          <button
+            className="main-load-button"
+            id="load-more-trigger"
+            onClick={handleLoadClick}
+            disabled={isGettingThumbnail}
+          >
+            {isGettingThumbnail ? "Loading..." : "Load More"}
+          </button>
+        </div>
+      )
+      :
+      (
+        <div className="no-more-thumbnails">
+           <CheckCircle size={40} color="#4CAF50" /> {/* Green check icon */}
+           <p>You&apos;ve caught up! No more thumbnails to load.</p>
+        </div>
+      )}
     </div>
   );
 };

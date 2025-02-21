@@ -45,4 +45,3 @@ const ThumbnailCard = ({ thumbnail, goToThumbnailPage, authUser }) => {
     </div>
   );
   export default ThumbnailCard
-  // Skeleton for each card

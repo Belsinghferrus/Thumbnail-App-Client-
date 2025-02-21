@@ -11,6 +11,7 @@ const Search = ({ setIsSearchActive, isMobile }) => {
   );
   const { getThumbnail } = useThumbnailStore();
   const [isExpanded, setIsExpanded] = useState(false);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     if (searchQuery) {
@@ -25,11 +26,13 @@ const Search = ({ setIsSearchActive, isMobile }) => {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    if (searchQuery.trim() === "") {
-      getThumbnail();
-    }
     setSearchParams({ query: searchQuery });
-    getThumbnail(searchQuery);
+    if (searchQuery.trim() === "") {
+      getThumbnail("", 1);
+    } else {
+      getThumbnail(searchQuery, 1)
+    }
+    setPage(1)
   };
 
   const handleExpand = () => {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/home/HomePage";
 import LoginPage from "./pages/login/LoginPage";
 import ThumbnailPage from "./pages/thumbnail/ThumbnailPage";
@@ -23,22 +23,21 @@ const App = () => {
 
   useEffect(() => {
     checkAuth();
-    getThumbnail();
     const timeOut = setTimeout(() => {
       setShowLoader(false);
     }, 2000);
     return () => clearTimeout(timeOut)
-  }, [checkAuth, getThumbnail]);
+  }, [checkAuth, ]);
 
   console.log({ authUser });
   console.log({ userDetails });
   console.log({ userThumbnail });
   console.log("geting thumbnail", isGettingThumbnail);
   console.log("is checking auth", isCheckingAuth);
-  console.log("loader", showLoader);
+  console.log("initial loader ", showLoader);
   
 
-  if (showLoader || isCheckingAuth && isGettingThumbnail)
+  if (showLoader )
     return (
       <div className="progress-loader">
         <div className="progress"></div>

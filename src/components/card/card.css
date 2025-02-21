@@ -84,6 +84,80 @@
   margin-right: 10px;
 }
 
+.main-load-more-comp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+/* Load More Button */
+.main-load-button {
+  width: 140px;
+  height: 42px;
+  font-size: 15px;
+  font-weight: 600;
+  background: #ff0000; /* YouTube Red */
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0px 4px 8px rgba(255, 0, 0, 0.3);
+}
+
+/* Hover Effect */
+.main-load-button:hover {
+  background: #cc0000; /* Darker Red */
+  transform: scale(1.05);
+}
+
+/* Active Click Effect */
+.main-load-button:active {
+  transform: scale(0.95);
+}
+
+/* Disabled State */
+.main-load-button:disabled {
+  background: #555;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Smooth fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.main-load-button {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+
+.no-more-thumbnails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+}
+.no-more-thumbnails svg {
+  margin-bottom: 10px;
+}
+
+
+
+//---------------------------------------------------------
 .skeleton-card {
   background-color: #1a1a1a;
   border-radius: 8px;
@@ -93,15 +167,6 @@
   align-items: flex-start;
   gap: 10px;
 }
-
-/* Skeleton elements */
-/* .skeleton-thumbnail {
-  width: 100%;
-  height: 150px;
-  background-color: #333;
-  border-radius: 4px;
-  animation: skeleton-pulse 1s infinite ease-in-out;
-} */
 
 .skeleton-title {
   width: 60%;
