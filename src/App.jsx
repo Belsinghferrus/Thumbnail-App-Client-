@@ -22,6 +22,8 @@ const App = () => {
   const { isGettingThumbnail } = useThumbnailStore();
   const [showLoader, setShowLoader] = useState(true);
 
+
+//----------WORKING CHECKAUTH -------------------
   useEffect(() => {
     checkAuth();
     const timeOut = setTimeout(() => {
@@ -29,6 +31,7 @@ const App = () => {
     }, 2000);
     return () => clearTimeout(timeOut)
   }, [checkAuth, ]);
+
 
   console.log({ authUser });
   console.log({ userDetails });
@@ -38,7 +41,7 @@ const App = () => {
   console.log("initial loader ", showLoader);
   
 
-  if (showLoader )
+  if (showLoader)
     return (
       <div className="progress-loader">
         <div className="progress"></div>

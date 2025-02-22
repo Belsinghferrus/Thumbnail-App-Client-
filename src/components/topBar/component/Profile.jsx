@@ -17,8 +17,9 @@ const Profile = () => {
   const navigate = useNavigate();
   const ref = useRef(null);
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+  const toggleDropdown = (e) => {
+    e.stopPropagation();
+    setIsOpen((prev) => !prev);
   };
 
   const handleLogout = async () => {
@@ -29,24 +30,25 @@ const Profile = () => {
     }
   };
   const handleClickOutside = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(false);
   };
 
   useClickOutside(ref, handleClickOutside);
 
   return (
-    <div className="profile-dropdown">
-      <button onClick={toggleDropdown} className="profile-image">
+    <div className="profile-dropdown" ref={ref}>
+      <button onClick={toggleDropdown}  className="profile-image">
         <img
+        onError={(e) => e.target.src = profile}
           className="main-profile-pic"
           src={authUser?.profilePicture || profile}
           alt=""
         />
       </button>
       {isOpen && (
-        <div className="dropdown-menu" ref={ref}>
+        <div   className="dropdown-menu" >
           <div className="menu-profile-image">
-            <img src={authUser?.profilePicture || profile} />
+            <img onError={(e) => e.target.src = profile} src={authUser?.profilePicture || profile} />
             <p>
               {authUser?.username.length > 7
                 ? authUser?.username.slice(0, 7) + ".."

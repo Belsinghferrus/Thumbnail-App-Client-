@@ -10,7 +10,7 @@ const Security = () => {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const {isUpdating, changePassword} = useAuth()
+  const {isUpdating, changePassword, authUser} = useAuth()
   const navigate = useNavigate();
 
 
@@ -29,7 +29,7 @@ const Security = () => {
   }
 
   return (
-    <div>
+    <div className='security'>
       <Logo />
       <div className="change-password-container">
       <h2 className='head-h2'>Change Password</h2>

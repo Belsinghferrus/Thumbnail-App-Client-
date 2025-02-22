@@ -35,17 +35,16 @@ const ProfilePage = () => {
     navigate("/upload");
   };
 
-  const handleDelete = async(id) => {
+  const handleDelete = async (id) => {
     setIsLoading(true);
     try {
-     await deleteThumbnail(id, navigate);
+      await deleteThumbnail(id, navigate);
     } catch (error) {
       console.error("Error in handle delete", error);
     } finally {
       setIsLoading(false);
-      setActiveMenuId(null); 
+      setActiveMenuId(null);
     }
-    
   };
 
   const goToThumbnailPage = (id) => {
@@ -56,7 +55,7 @@ const ProfilePage = () => {
   return (
     <div className="profile-page">
       <Topbar_Profile />
-      {/* Profile Picture */}
+      {/*--------------------Profile Section----------------------------------*/}
       <div className="profile-pic-container">
         <img
           src={authUser?.profilePicture || profile}
@@ -75,8 +74,9 @@ const ProfilePage = () => {
         </ReactLinkify>
       </div>
 
-<hr className="hr-profile"/><br/>
-      {/* Uploaded Thumbnails Section */}
+      <hr className="hr-profile" />
+      <br />
+      {/* --------------------Uploaded Thumbnails Section------------------------------*/}
       <div className="thumbnails-section">
         <h2>Uploaded Thumbnails</h2>
         <div className="thumbnails-grid">
@@ -100,17 +100,19 @@ const ProfilePage = () => {
                   {activeMenuId === thumbnail._id && (
                     <div className="menu-options">
                       {isLoading ? (
-                        <button disabled className="loading-overlay">Deleting..</button>
-                      )
-                      :
-                      (<button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleDelete(thumbnail._id);
-                        }}
-                      >
-                        Delete
-                      </button>)}
+                        <button disabled className="loading-overlay">
+                          Deleting..
+                        </button>
+                      ) : (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDelete(thumbnail._id);
+                          }}
+                        >
+                          Delete
+                        </button>
+                      )}
                     </div>
                   )}
                 </div>
@@ -119,12 +121,14 @@ const ProfilePage = () => {
               </div>
             ))
           ) : (
-            <p>No Thumbnail available</p>
+            <div className="profile-thumbnail-load">
+              <div className="details-spinner"></div>
+            </div>
           )}
         </div>
       </div>
 
-      {/* Saved Thumbnails Section */}
+      {/*------------------- Saved Thumbnails Section------------------- */}
       <div className="thumbnails-section">
         <h2>Saved Thumbnails</h2>
         {savedThumbnails && savedThumbnails.length > 0 ? (
@@ -165,7 +169,9 @@ const ProfilePage = () => {
             ))}
           </div>
         ) : (
-          <p>No saved Thumbnail</p>
+          <div className="profile-thumbnail-load">
+            <div className="details-spinner"></div>
+          </div>
         )}
       </div>
 

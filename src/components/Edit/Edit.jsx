@@ -46,7 +46,7 @@ const Edit = () => {
 
 
   return (
-    <div>
+    <div className="edit">
     <Logo className="logo-upload"/>
     <div className="edit-profile">
       {/* {!isProfileUpdating && (

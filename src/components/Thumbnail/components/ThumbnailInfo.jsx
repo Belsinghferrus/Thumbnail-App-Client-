@@ -8,18 +8,14 @@ import save from "../../../assets/save.png";
 import useThumbnailStore from "../../../Store/useThumbnailStore";
 import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../../Store/useAuthStore";
+import toast from "react-hot-toast";
 
-const ThumbnailInfo = ({thumbnailDetail}) => {
-  const {
-    getThumbnailDetails,
-    saveThumbnail,
-    downloadThumbnail,
-  } = useThumbnailStore();
+const ThumbnailInfo = ({ thumbnailDetail }) => {
+  const { saveThumbnail, downloadThumbnail } = useThumbnailStore();
   const { id } = useParams();
   const navigate = useNavigate();
   const { authUser } = useAuth();
   const [isSaved, setIsSaved] = useState(false);
-
 
   const handleSave = async () => {
     if (!thumbnailDetail?._id) {
@@ -30,9 +26,11 @@ const ThumbnailInfo = ({thumbnailDetail}) => {
     setIsSaved(true);
   };
 
+  const handleShareClick = () => {
+    toast.success("Coming soon");
+  };
 
   //To Update state if thumbnail is already saved
-  
   const idToString = id.toString();
   useEffect(() => {
     if (authUser?.savedThumbnails?.includes(idToString)) {
@@ -58,7 +56,7 @@ const ThumbnailInfo = ({thumbnailDetail}) => {
             <img
               className="thumbnail-profile-pic"
               src={thumbnailDetail.user?.profilePicture || profile}
-              alt=""
+              alt="profile picture"
             />
             <div className="thumbnail-main-info">
               <p className="thumbnail-user-name">
@@ -75,13 +73,11 @@ const ThumbnailInfo = ({thumbnailDetail}) => {
         <div className="thumbnail-metric" onClick={handleSave}>
           <img src={isSaved ? saved : save} alt="click" />
           <p>{thumbnailDetail?.saves || 0}</p>
-          {/* <p>Click</p> */}
         </div>
 
-        <div className="thumbnail-metric">
+        <div className="thumbnail-metric" onClick={handleShareClick}>
           <img src={share} alt="share" />
           <p>{thumbnailDetail?.shares} </p>
-          {/* <p>Share</p> */}
         </div>
         <div
           className="thumbnail-metric"
@@ -89,7 +85,6 @@ const ThumbnailInfo = ({thumbnailDetail}) => {
         >
           <img src={download} alt="download" />
           <p>{thumbnailDetail?.downloads || 0}</p>
-          {/* <p>Download</p> */}
         </div>
       </div>
     </div>

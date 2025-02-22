@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: space-between;
   margin: 20px 30px 0px 30px;
-  padding: 10px 10px;
+  padding: 10px 10px 10px 10px ;
 }
 
 .main-profile-pic {
@@ -169,8 +169,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin: 10px;
+    margin: 0px 5px 0px 5px;
     gap: 10px;
+    /* padding: 10px 10px 0px 10px ; */
+
   }
 
   .desktop-logo {

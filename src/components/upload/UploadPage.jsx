@@ -57,7 +57,7 @@ const UploadPage = () => {
   }, [preview]);
 
   return (
-    <>
+    <div className="upload">
     <Logo className="logo-upload"/>
     <div className="upload-container">
       {!isUploading && (
@@ -161,7 +161,7 @@ const UploadPage = () => {
         </button>
       </form>
     </div>
-    </>
+    </div>
     
   );
 };

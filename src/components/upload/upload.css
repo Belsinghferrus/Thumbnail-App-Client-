@@ -9,6 +9,9 @@
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 
+.upload{
+  margin-top: 5vh;
+}
 .upload-title {
   font-size: 24px;
   color: #ffffff;

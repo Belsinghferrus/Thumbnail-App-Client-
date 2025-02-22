@@ -12,6 +12,14 @@
   margin-bottom: 20px;
 }
 
+.profile-thumbnail-load{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20vh; 
+}
+
+
 .profile-picture{
   width: 150px;
   height: 150px;

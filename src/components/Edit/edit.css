@@ -1,14 +1,18 @@
 /* Main Edit Profile Container */
 .edit-profile {
-  background: #2c2f33;
+  background: rgba(25, 25, 25, 0.95);
   padding: 40px;
   width: 500px;
   margin: 50px auto;
   border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
   color: #ffffff;
+  border: 1px solid #ffffff1a;
 }
 
+.edit{
+  margin-top: 5vh;
+}
 .edit-profile h2 {
   text-align: center;
   font-size: 26px;
@@ -74,13 +78,13 @@
 } */
 
 .edit-textfield{
-  width: 100%;
+  width: 95%;
+  background: #1c1c1c;
+  border: 1px solid #ffffff1a;
+  border-radius: 6px;
   padding: 12px;
-  border: 2px solid #444;
-  border-radius: 8px;
-  background: #333;
-  color: white;
   font-size: 14px;
+  color: #ffffff;
 }
 
 textarea {

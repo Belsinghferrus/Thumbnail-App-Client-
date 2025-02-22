@@ -1,15 +1,23 @@
+.security{
+ margin-top:10vh;
+}
+
 .change-password-container {
-    width: 400px;
     margin: 50px auto;
-    background: #333;
-    color: #fff;
-    padding: 30px;
+    /* color: #fff; */
+
+
+    background-color: rgba(25, 25, 25, 0.95);
+    width: 400px;
+    padding: 40px 30px;
+    border: 1px solid #ffffff1a;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
   }
   
   .head-h2 {
-    margin-bottom: 16px;
+    margin-bottom: 24px;
     text-align: center;
     color: #ffffff;
   }
@@ -26,11 +34,12 @@
   
  .form-group input {
     width: 95%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 2px solid #444;
-    background: #333;
-    color: white;
+    background: #1c1c1c;
+    border: 1px solid #ffffff1a;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 14px;
+    color: #ffffff;
 
   }
   

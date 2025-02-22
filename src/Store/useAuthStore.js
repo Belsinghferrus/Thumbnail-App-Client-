@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import axiosInstance from "../api/axiosInstance";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 
 const useAuth = create((set) => ({
   authUser: null,
@@ -23,6 +22,7 @@ const useAuth = create((set) => ({
       if (window.location.pathname === "/auth/google") {
         return;
       }
+ 
       const response = await axiosInstance.get("/auth/check");
       set({ authUser: response.data });
     } catch (error) {
