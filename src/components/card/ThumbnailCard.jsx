@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
+import profile from '../../assets/profile.jpg'
 
 const ThumbnailCard = ({ thumbnail, goToThumbnailPage, authUser }) => {
     const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -22,6 +23,7 @@ const ThumbnailCard = ({ thumbnail, goToThumbnailPage, authUser }) => {
         </div>
         <div className="card-thumbnail-info">
           <img
+          onError={(e) => e.target.src = profile}
             className="profile-pic"
             src={thumbnail?.user.profilePicture}
             alt="profile"

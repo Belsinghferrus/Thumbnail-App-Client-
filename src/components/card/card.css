@@ -14,6 +14,7 @@
   padding: 5px;
   transition: transform 0.3s;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .card:hover {
@@ -170,7 +171,7 @@
 }
 
 .skeleton-title {
-  width: 60%;
+  width: 80%;
   height: 14px;
   background-color: #444;
   border-radius: 4px;
@@ -259,11 +260,8 @@ position: absolute;
   background: #222;
   padding: 10px;
   border-radius: 8px;
-  /* width: 250px;
-  height: 250px; */
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-between;
 }
 
@@ -277,7 +275,7 @@ position: absolute;
 }
 
 .skeleton-title, .skeleton-cta {
-  width: 80%;
+  /* width: 80%; */
   height: 12px;
   background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
   background-size: 200% 100%;

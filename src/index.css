@@ -65,7 +65,7 @@ a{
   border-radius: 7px;
   background: red;
   transition: 0.5s;
-  animation: loading1274 2s ease infinite;
+  animation: loading1274 1s ease infinite;
 }
 
 @keyframes loading1274 {
@@ -73,7 +73,7 @@ a{
     width: 0%;
   }
 
-  10% {
+  /* 10% {
     width: 10%;
   }
 
@@ -83,7 +83,7 @@ a{
 
   60% {
     width: 60%;
-  }
+  } */
 
   100% {
     width: 100%;

@@ -94,7 +94,7 @@ const LoginPage = () => {
       <div className="login-card">
         <h1 className="auth-title"> Login or Register</h1>
 
-        {!showRegisterForm ? (
+        {showRegisterForm ? (
           <form onSubmit={handleSubmitLogin} className="auth-form">
             <h2>Login</h2>
             <input
