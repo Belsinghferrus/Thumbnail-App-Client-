@@ -12,6 +12,7 @@ const useAuth = create((set) => ({
   isLoading: false,
   userDetails: null,
   userThumbnail: [],
+  isOauthLoading: false,
 
   setUserDetails: (data) => set({ userDetails: data }),
   setThumbnails: (data) => set({ thumbnails: data }),
@@ -92,7 +93,7 @@ const useAuth = create((set) => ({
   },
 
   googleOAuth: async () => {
-    set({ isLoading: true });
+    set({ isOauthLoading: true });
     try {
       const response = await axiosInstance.get("auth/google");
       set({ authUser: response.data });
@@ -101,7 +102,7 @@ const useAuth = create((set) => ({
       console.log("error in google auth", error);
       toast.error("Something went wrong");
     } finally {
-      set({ isLoading: false });
+      set({ isOauthLoading: false });
     }
   },
 

@@ -59,6 +59,17 @@
   background-color: #584fd3;
 }
 
+.auth-button-loading{
+  background-color: #999;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: not-allowed;
+  transition: background-color 0.2s ease;
+}
+
 .auth-secondary-button {
   background-color: transparent;
   color: #ffffff;
