@@ -28,10 +28,9 @@ const App = () => {
     checkAuth();
     const timeOut = setTimeout(() => {
       setShowLoader(false);
-    }, 2000);
+    }, 1000);
     return () => clearTimeout(timeOut)
   }, [checkAuth, ]);
-
 
   console.log({ authUser });
   console.log({ userDetails });
@@ -39,6 +38,7 @@ const App = () => {
   console.log("geting thumbnail", isGettingThumbnail);
   console.log("is checking auth", isCheckingAuth);
   console.log("initial loader ", showLoader);
+ 
   
 
   if (showLoader)

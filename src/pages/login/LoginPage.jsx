@@ -4,7 +4,7 @@ import useAuth from "../../Store/useAuthStore";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../components/topBar/component/Logo";
-import google from '../../assets/google.png'
+import google from "../../assets/google.png";
 import toast from "react-hot-toast";
 const LoginPage = () => {
   const [loginFormData, setLoginFormData] = useState({
@@ -16,8 +16,15 @@ const LoginPage = () => {
     email: "",
     password: "",
   });
-  const [showRegisterForm, setShowRegisterForm] = useState(false);
-  const { login, register, googleOAuth } = useAuth();
+  const [showRegisterForm, setShowRegisterForm] = useState(true);
+  const {
+    login,
+    register,
+    googleOAuth,
+    isSigningUp,
+    isLoggingIn,
+    isOauthLoading,
+  } = useAuth();
   const navigate = useNavigate();
   //handle login Input
   const handleLoginInputChange = (e) => {
@@ -28,9 +35,7 @@ const LoginPage = () => {
   //handle Register Input
   const handleRegisterInputChange = (e) => {
     const { name, value } = e.target;
-    setRegisterFormData(
-      (prevData) => ({ ...prevData, [name]: value })
-    );
+    setRegisterFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   //handle login submit
@@ -65,13 +70,12 @@ const LoginPage = () => {
 
   //handle google auth
   const handleGoogleAuth = async () => {
-   try {
-    await googleOAuth();
-   } catch (error) {
-    console.log("Error in handleOauth", error);
-   }
+    try {
+      await googleOAuth();
+    } catch (error) {
+      console.log("Error in handleOauth", error);
+    }
   };
-
 
   useEffect(() => {
     const handlePopState = () => {
@@ -88,9 +92,9 @@ const LoginPage = () => {
   return (
     <div className="login-page">
       <div className="logo-login">
-         <Logo />
+        <Logo />
       </div>
-     
+
       <div className="login-card">
         <h1 className="auth-title"> Login or Register</h1>
 
@@ -115,9 +119,14 @@ const LoginPage = () => {
               placeholder="Password"
               required
             />
-            <button className="auth-button" type="submit">
-              Login
-            </button>
+            {!isLoggingIn ? (
+              <button className="auth-button" type="submit">
+                Login
+              </button>
+            ) : (
+              <button className="auth-button-loading">Logging in</button>
+            )}
+
             <div className="have-account">
               <p className="auth-switch">Don&apos;t have an account?</p>
               <p
@@ -158,9 +167,14 @@ const LoginPage = () => {
               placeholder="Password"
               required
             />
-            <button className="auth-button" type="submit">
-              Register
-            </button>
+            {!isSigningUp ? (
+              <button className="auth-button" type="submit">
+                Register
+              </button>
+            ) : (
+              <button className="auth-button-loading">Registering...</button>
+            )}
+
             <div className="have-account">
               <p className="auth-switch">Already have an account? </p>
               <p
@@ -171,17 +185,21 @@ const LoginPage = () => {
               </p>
             </div>
           </form>
-        )}<br/>
+        )}
+        <br />
         <p>or</p>
         <div>
-          <button className="google-auth-button" onClick={handleGoogleAuth}>
-            <img
-              src={google}
-              alt="Google Logo"
-              className="google-logo"
-            />
-            Login with Google
-          </button>
+          {isOauthLoading ? (
+            <div className="google-auth-button">
+               <img src={google} alt="Google Logo" className="google-logo" />
+               <p>Please wait</p>
+            </div>
+          ) : (
+            <button className="google-auth-button" onClick={handleGoogleAuth}>
+              <img src={google} alt="Google Logo" className="google-logo" />
+              Login with Google
+            </button>
+          )}
         </div>
       </div>
     </div>

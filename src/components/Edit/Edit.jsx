@@ -2,8 +2,7 @@ import { useState } from "react";
 import "./edit.css";
 import useAuth from "../../Store/useAuthStore";
 import { useNavigate } from "react-router-dom";
-import profile from '../../assets/profile.jpg'
-import ClipLoader from "react-spinners/ClipLoader";
+import profile from "../../assets/profile.jpg";
 import Logo from "../topBar/component/Logo";
 
 const Edit = () => {
@@ -14,9 +13,8 @@ const Edit = () => {
   const [previewImage, setPreviewImage] = useState(
     authUser?.profilePicture || ""
   );
-
   const userId = authUser._id;
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleNameChange = (e) => setName(e.target.value);
   const handleBioChange = (e) => setBio(e.target.value);
 
@@ -32,6 +30,8 @@ const Edit = () => {
     }
   };
 
+
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -40,69 +40,66 @@ const Edit = () => {
     if (profileImage) {
       formData.append("profilePicture", profileImage);
     }
-    updateProfile(userId, formData);
-    navigate('/profile')
-  };
 
+    updateProfile(userId, formData);
+    
+    navigate("/profile")
+   
+  };
 
   return (
     <div className="edit">
-    <Logo className="logo-upload"/>
-    <div className="edit-profile">
-      {/* {!isProfileUpdating && (
-        <div className="overlay">
-          <div className="spinner-container">
-            <ClipLoader color="#ffffff" loading={isProfileUpdating} size={50} />
+      <Logo className="logo-upload" />
+      <div className="edit-profile">
+        <h2>Edit Profile</h2>
+        <form onSubmit={handleFormSubmit} className="edit-form">
+          <div className="profile-pic-edit">
+            <div className="profile-picture-container">
+              <img
+                src={previewImage || profile}
+                alt="Profile Preview"
+                className="profile-preview"
+              />
+              <input
+                type="file"
+                id="upload-button"
+                accept="image/*"
+                onChange={handleImageUpload}
+              />
+              <label htmlFor="upload-button" className="upload-label">
+                ✎
+              </label>
+            </div>
           </div>
-        </div>
-      )} */}
-      <h2>Edit Profile</h2>
-      <form onSubmit={handleFormSubmit} className="edit-form">
-        <div className="profile-pic-edit">
-          <div className="profile-picture-container">
-            <img
-              src={previewImage || profile}
-              alt="Profile Preview"
-              className="profile-preview"
-            />
+
+          <div className="form-group">
+            <label>Name:</label>
             <input
-              type="file"
-              id="upload-button"
-              accept="image/*"
-              onChange={handleImageUpload}
+              type="text"
+              value={name}
+              onChange={handleNameChange}
+              required
+              className="edit-textfield"
             />
-            <label htmlFor="upload-button" className="upload-label">
-              ✎
-            </label>
           </div>
-        </div>
 
-        <div className="form-group">
-          <label>Name:</label>
-          <input
-            type="text"
-            value={name}
-            onChange={handleNameChange}
-            required
-            className="edit-textfield"
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Bio:</label>
-          <textarea className="edit-textfield" value={bio} onChange={handleBioChange}></textarea>
-        </div>
-        {isProfileUpdating ? (
-          <button type="submit" className="update-btn">
-            Updating..
-          </button>
-        ) : (
-          <button type="submit" className="update-btn">
-            Update Profile
-          </button>
-        )}
-      </form>
-    </div>
+          <div className="form-group">
+            <label>Bio:</label>
+            <textarea
+              className="edit-textfield"
+              value={bio}
+              onChange={handleBioChange}
+            ></textarea>
+          </div>
+          {isProfileUpdating ? (
+            <button value={isUpdating} className="update-btn-loading-submit">Updating..</button>
+          ) : (
+            <button  type="submit" className="update-btn">
+              Update Profile
+            </button>
+          )}
+        </form>
+      </div>
     </div>
   );
 };
