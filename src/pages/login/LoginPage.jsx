@@ -17,7 +17,14 @@ const LoginPage = () => {
     password: "",
   });
   const [showRegisterForm, setShowRegisterForm] = useState(true);
-  const { login, register, googleOAuth, isSigningUp, isLoggingIn,isOauthLoading } = useAuth();
+  const {
+    login,
+    register,
+    googleOAuth,
+    isSigningUp,
+    isLoggingIn,
+    isOauthLoading,
+  } = useAuth();
   const navigate = useNavigate();
   //handle login Input
   const handleLoginInputChange = (e) => {
@@ -117,7 +124,7 @@ const LoginPage = () => {
                 Login
               </button>
             ) : (
-              <button className="auth-button-loading"  >Logging in</button>
+              <button className="auth-button-loading">Logging in</button>
             )}
 
             <div className="have-account">
@@ -162,14 +169,12 @@ const LoginPage = () => {
             />
             {!isSigningUp ? (
               <button className="auth-button" type="submit">
-              Register
-            </button>
+                Register
+              </button>
             ) : (
-              <button className="auth-button-loading" >
-              Registering...
-            </button>
+              <button className="auth-button-loading">Registering...</button>
             )}
-            
+
             <div className="have-account">
               <p className="auth-switch">Already have an account? </p>
               <p
@@ -184,10 +189,17 @@ const LoginPage = () => {
         <br />
         <p>or</p>
         <div>
-          <button className="google-auth-button" onClick={handleGoogleAuth}>
-            <img src={google} alt="Google Logo" className="google-logo" />
-            Login with Google
-          </button>
+          {isOauthLoading ? (
+            <div className="google-auth-button">
+               <img src={google} alt="Google Logo" className="google-logo" />
+               <p>Please wait</p>
+            </div>
+          ) : (
+            <button className="google-auth-button" onClick={handleGoogleAuth}>
+              <img src={google} alt="Google Logo" className="google-logo" />
+              Login with Google
+            </button>
+          )}
         </div>
       </div>
     </div>

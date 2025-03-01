@@ -43,7 +43,7 @@ const PrivacyPolicy = () => {
 
       <section className="policy-section">
         <h2>Contact Us</h2>
-        <p>If you have any questions about this policy, feel free to contact us at belsinghf@gmail.com.</p>
+        <p>If you have any questions about this policy, feel free to contact us at artsionarymedia@gmail.com.</p>
       </section>
     </div>
   );

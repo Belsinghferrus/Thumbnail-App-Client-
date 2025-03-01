@@ -96,7 +96,6 @@ const useAuth = create((set) => ({
     set({ isOauthLoading: true });
     try {
       const response = await axiosInstance.get("auth/google");
-      set({ authUser: response.data });
       window.location.href = response.data.redirectUrl;
     } catch (error) {
       console.log("error in google auth", error);

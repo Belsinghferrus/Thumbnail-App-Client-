@@ -109,8 +109,6 @@ const useThumbnailStore = create((set, get) => ({
   saveThumbnail: async (thumbnailId) => {
     try {
      await axiosInstance.post(`/thumbnails/save/${thumbnailId}`);
-      console.log(thumbnailId);
-
       set((state) => ({
         thumbnailDetail: {
           ...state.thumbnailDetail,
@@ -118,7 +116,6 @@ const useThumbnailStore = create((set, get) => ({
         },
       }));
       set({ savedImage: true});
-
       toast.success("thumbnail saved successful");
     } catch (error) {
       console.error("Error saving thumbnail in thumbnailstore:", error);

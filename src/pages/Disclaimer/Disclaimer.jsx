@@ -45,7 +45,7 @@ const Disclaimer = () => {
 
       <section className="disclaimer-section">
         <h2>Contact Us</h2>
-        <p>If you have any concerns or questions, feel free to contact us at belsinghf@gmail.com.</p>
+        <p>If you have any concerns or questions, feel free to contact us at artsionarymedia@gmail.com.</p>
       </section>
     </div>
   );
