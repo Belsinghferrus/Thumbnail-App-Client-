@@ -7,10 +7,6 @@ const axiosInstance = axios.create({
   withCredentials: true, 
 });
  
-console.log("baseURL:", axiosInstance);
 
 
 export default axiosInstance;
-
-// "http://localhost:5000/api"
-// 'https://server.production.tumbnail.com/api'
