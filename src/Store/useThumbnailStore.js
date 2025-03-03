@@ -180,23 +180,6 @@ const useThumbnailStore = create((set, get) => ({
     }
   },
 
-  //CTR
-  // updateCtr: async (thumbnailId) => {
-  //   try {
-  //     const ctr = await axiosInstance.post(`/thumbnails/ctr/${thumbnailId}`);
-  //     const thumbnailDetails = await axiosInstance.get(
-  //       `thumbnails/${thumbnailId}`
-  //     );
-  //     const impression = thumbnailDetails.impression;
-  //     console.log(impression);
-  //     console.log(ctr);
-  //         const ctrResponse = thumbnailDetails?.impressions > 0
-  //     ? ((thumbnailDetails?.clicks || 0) / thumbnailDetails.impressions * 100).toFixed(2)
-  //     : 0;
-  //   } catch (error) {
-  //     console.error("Error updating ctr:", error);
-  //   }
-  // },
 
   //FILTER THUMBNAIL
   filterThumbnail: async (category, page = 1) => {

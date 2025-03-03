@@ -32,12 +32,12 @@ const App = () => {
     return () => clearTimeout(timeOut)
   }, [checkAuth, ]);
 
-  console.log({ authUser });
-  console.log({ userDetails });
-  console.log({ userThumbnail });
-  console.log("geting thumbnail", isGettingThumbnail);
-  console.log("is checking auth", isCheckingAuth);
-  console.log("initial loader ", showLoader);
+  // console.log({ authUser });
+  // console.log({ userDetails });
+  // console.log({ userThumbnail });
+  // console.log("geting thumbnail", isGettingThumbnail);
+  // console.log("is checking auth", isCheckingAuth);
+  // console.log("initial loader ", showLoader);
  
   
 

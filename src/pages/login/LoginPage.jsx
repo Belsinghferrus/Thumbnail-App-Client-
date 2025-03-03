@@ -189,17 +189,10 @@ const LoginPage = () => {
         <br />
         <p>or</p>
         <div>
-          {isOauthLoading ? (
-            <div className="google-auth-button">
-               <img src={google} alt="Google Logo" className="google-logo" />
-               <p>Please wait</p>
-            </div>
-          ) : (
-            <button className="google-auth-button" onClick={handleGoogleAuth}>
-              <img src={google} alt="Google Logo" className="google-logo" />
-              Login with Google
-            </button>
-          )}
+          <button className="google-auth-button" onClick={handleGoogleAuth}>
+            <img src={google} alt="Google Logo" className="google-logo" />
+            Login with Google
+          </button>
         </div>
       </div>
     </div>
