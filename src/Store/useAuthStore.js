@@ -38,7 +38,7 @@ const useAuth = create((set) => ({
     set({ isSigningUp: true });
     try {
       const response = await axiosInstance.post("/auth/register", data);
-      window.location.href = response.data.redirectUrl;
+      // window.location.href = response.data.redirectUrl;
       set({ authUser: response.data });
       toast.success("Account created successfully");
     } catch (error) {
